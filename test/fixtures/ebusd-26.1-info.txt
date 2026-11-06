@@ -1,0 +1,18 @@
+version: ebusd 26.1.26.1
+update check: OK
+device: 127.0.0.1:9999, TCP, enhanced, invalid
+access: *
+signal: no signal
+reconnects: 0
+masters: 3
+messages: 236
+conditional: 3
+poll: 0
+update: 10
+address 03: master #11
+address 08: slave #11, scanned "MF=Vaillant;ID=BAI00;SW=0327;HW=7201", loaded "vaillant/bai.308523.inc", "vaillant/08.bai.csv"
+address 10: master #2
+address 15: slave #2, scanned "MF=Vaillant;ID=70000;SW=0374;HW=6901"
+address 26: slave, scanning
+address 31: master #8, ebusd
+address 36: slave #8, ebusd

@@ -1,0 +1,243 @@
+r,700,,DisplayedOutsideTemp,outside temperature,15,ign,s,IGN:4,,,,value,s,EXP,,°C,
+r,700,,HwcOpMode,hwc operation mode,15,ign,s,IGN:4,,,,value,s,UIN,0=off;1=auto;2=day;3=night,,
+w,700,,HwcOpMode,hwc operation mode,15,value,m,UIN,0=off;1=auto;2=day;3=night,,
+r,700,,HwcTempDesired,hwc temperature desired,15,ign,s,IGN:4,,,,value,s,EXP,,°C,setpoint
+w,700,,HwcTempDesired,hwc temperature desired,15,value,m,EXP,,°C,setpoint
+r,bai,,AccessoriesOne,d.27 Zubehörrelais 1,08,value,s,UCH,1=circulationpump;2=extheatingpump;3=storagechargingpump;4=fluegasflapextractorhood;5=externalgasvalve;6=externalerrormessage;7=solarpump;8=remotecontrol,,Funktion des Zubehörrelais 1
+w,bai,install,AccessoriesOne,d.27 Zubehörrelais 1,08,value,m,UCH,1=circulationpump;2=extheatingpump;3=storagechargingpump;4=fluegasflapextractorhood;5=externalgasvalve;6=externalerrormessage;7=solarpump;8=remotecontrol,,Funktion des Zubehörrelais 1
+r,bai,,AccessoriesTwo,d.28 Zubehörrelais 2,08,value,s,UCH,1=circulationpump;2=extheatingpump;3=storagechargingpump;4=fluegasflapextractorhood;5=externalgasvalve;6=externalerrormessage;7=solarpump;8=remotecontrol,,Funktion des Zubehörrelais 2
+w,bai,install,AccessoriesTwo,d.28 Zubehörrelais 2,08,value,m,UCH,1=circulationpump;2=extheatingpump;3=storagechargingpump;4=fluegasflapextractorhood;5=externalgasvalve;6=externalerrormessage;7=solarpump;8=remotecontrol,,Funktion des Zubehörrelais 2
+r,bai,,ACRoomthermostat,d.08 Raumthermostat: Status des extrenen Raumthermostat an Klemme 3/4,08,value,s,UCH,0=off;1=on,,
+[id_sw>=413]r,bai,,APCComStatus,d.92 APC_ComStatus_DK: actoSTORE communication status,08,value,s,UCH,,,
+[id_sw>=413]r,bai,,APCLegioProtection,d.74 APC_LegioProtection: Legionella protection for actoSTORE,08,value,s,UCH,,,
+[id_sw>=413]w,bai,install,APCLegioProtection,d.74 APC_LegioProtection: Legionella protection for actoSTORE,08,value,m,UCH,,,
+r,bai,,AverageIgnitiontime,d.64 Mittlere Zündzeit,08,value,s,UCH,10,s,Mittlere Zündzeit
+r,bai,,BlockTimeHcMax,d.02 Maximale Brennersperrzeit: Max. Brennersperrzeit bei einem Vorlaufsollwert von 20°C,08,value,s,UCH,,min,Minuten
+w,bai,install,BlockTimeHcMax,d.02 Maximale Brennersperrzeit: Max. Brennersperrzeit bei einem Vorlaufsollwert von 20°C,08,value,m,UCH,,min,Minuten
+r,bai,,BoilerType,BoilerType_DK: Boiler typ of the bmu,08,value,s,UCH,,,
+r,bai,,ChangesDSN,Anzhl der DSN Änderungen: Anzahl der DSN (Gerätekennung) Änderungen,08,value,s,UCH,,,
+r,bai,,CirPump,d.13 Zirkulationspumpe: Status Zirkulationspumpe (über ein externes Modul ansteuerbar),08,value,s,UCH,0=off;1=on,,
+w,bai,install,Clearerrorhistory,Fehlerhistorie löschen,08,cleared,s,UCH,0=no;1=yes,,
+r,bai,,CounterStartattempts1,d.68 Zündfehler 1. Versuch: Anzahl der erfolglosen Zündversuche (im 1. Versuch),08,value,s,UCH,,°C,Temperatur
+r,bai,,CounterStartattempts2,d.69 Zündfehler 2. Versuch: Anzahl der erfolglosen Zündversuche (im 2. Versuch),08,value,s,UCH,,°C,Temperatur
+r,bai,,CounterStartAttempts3,Zündfehler 3. Versuch: Anzahl der erfolglosen Zündversuche (im 3. Versuch),08,value,s,UCH,,°C,Temperatur
+r,bai,,CounterStartAttempts4,Zündfehler 4. Versuch: Anzahl der erfolglosen Zündversuche (im 4. Versuch),08,value,s,UCH,,°C,Temperatur
+r,bai,,Currenterror,Aktuelle Fehler,08,error,s,UIN,,,Fehlernummer,error_1,s,UIN,,,Fehlernummer,error_2,s,UIN,,,Fehlernummer,error_3,s,UIN,,,Fehlernummer,error_4,s,UIN,,,Fehlernummer
+r,bai,,DateTime,Datum Uhrzeit,08,dcfstate,s,UCH,0=nosignal;1=ok;2=sync;3=valid,,DCF Empfängerstatus,btime,s,BTI,,,Uhrzeit,bdate,s,BDA,,,Datum,temp,s,D2B,,°C,Temperatur
+r,bai,,DcfState,d.91 DCF Status,08,value,s,UCH,0=nosignal;1=ok;2=sync;3=valid,,DCF Empfängerstatus
+r,bai,,DCFTimeDate,DCF Datum/Uhrzeit,08,btime,s,BTI,,,Uhrzeit,bdate,s,BDA,,,Datum
+r,bai,,DCRoomthermostat,d.16 Raumthermostat: Wärmeanforderung vom externen Regler (Klemme 3-4),08,value,s,UCH,0=off;1=on,,
+r,bai,,DeactivationsIFC,d.61 Anzahl Zündfehler: Anzahl der Zündfehler (nicht erfolgreiche Züdung im letzten Versuch oder fehlerhaftes Flammensignal),08,value,s,UCH,,,
+r,bai,,DeactivationsTemplimiter,d.60 STB Abschaltungen: Anzahl der Abschaltungen durch den Sicherheitstemperaturbgrenzers,08,value,s,UCH,,,
+r,bai,,DeltaFlowReturnMax,MaxDeltaFlowReturn_DK: Wartungsdaten,08,value,s,D2C,,°C,Temperatur
+r,bai,,DisplayMode,DisplayMode_DK: Display mode of the aplliance,08,value,s,UCH,,,
+r,bai,,DSN,DSN: Device Specific number,08,value,s,UIN,,,
+r,bai,,DSNOffset,d.93 Gerätekennung: Gerätekennung (DSN),08,value,s,UCH,,,
+w,bai,service,DSNOffset,d.93 Gerätekennung: Gerätekennung (DSN),08,value,m,UCH,,,
+r,bai,,DSNStart,DSN Startadresse,08,value,s,UIN,,,
+r,bai,,EBusHeatcontrol,d.90 Digitaler Regler: Gibt an ob ein digitaler Regler erkannt wurde,08,value,s,UCH,0=no;1=yes,,
+r,bai,,EbusSourceOn,eBUS Spannungsversorgung: Aktivierung der eBUS Speisung,08,value,s,UCH,0=off;1=on,,
+r,bai,,EbusVoltage,Rückmeldung der eBUS Spannung,08,value,s,UCH,0=off;1=on,,
+r,bai,,Errorhistory,Fehlerhistorie,08,index,m,UCH,,,,status,s,UCH,,,Status,time,s,VTM,,,Uhrzeit,date,s,HDA:3,,,Datum,error,s,UIN,,,Fehlernummer
+r,bai,,Expertlevel_ReturnTemp,Externer Rücklauftemperatursensor,08,temp,s,D2C,,°C,Temperatur,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,ExternalFaultmessage,Ext. Störmeldung: Signal für die externe Störmeldeeinrichtung,08,value,s,UCH,0=off;1=on,,
+r,bai,,ExternalFlowTempDesired,ext. Vorlaufsollwert: Vorlaufsollwert von einem externen Regler an Klemme 7-8-9,08,value,s,D2C,,°C,Temperatur
+r,bai,,ExternalHwcSwitch,Wasserschalter: Speicheranforderung eines externen Speichers über den Speicherkontakt,08,value,s,UCH,0=off;1=on,,
+r,bai,,ExternGasvalve,Ext. Gasventil: Externes Magnetventil,08,value,s,UCH,0=off;1=on,,
+r,bai,,ExtFlowTempDesiredMin,d.09 Min. ext. Vorlaufsollwert: minimum out of Kl.7 and eBus flow setpoint,08,value,s,D2C,,°C,Temperatur
+r,bai,,ExtStorageModulCon,VR65 angeschlossen: Externes Speichermodul (VR65) angeschlosssen,08,value,s,UCH,0=no;1=yes,,
+r,bai,,ExtWP,d.11 ext. Heizungspumpe: Externe Heizungspumpe,08,value,s,UCH,0=off;1=on,,
+r,bai,,FanHours,Betriebsstunden Lüfter: Betriebsstunden des Lüfters,08,value,s,UIN,,h,Stunden
+r,bai,,FanMaxSpeedOperation,Max. Lüfterdrehzahl,08,value,s,UIN,,rpm,Lüfter Maximaldrehzahl
+r,bai,,FanMinSpeedOperation,Min. Lüfterdrehzahl,08,value,s,UIN,,rpm,Lüfter Minimaldrehzahl
+r,bai,,FanPWMSum,Fan_PWM_Sum_DK: Predictive Maintenance data for the fan damage recognition,08,value,s,UIN,,,
+r,bai,,FanPWMTest,Fan_PWM_Test_DK: Predictive Maintenance data for the fan damage recognition,08,value,s,UCH,,,
+r,bai,,FanSpeed,d.34 Lüfteristdrehzahl,08,value,s,UIN,,rpm,Aktuelle Lüfterdrehzahl
+r,bai,,FanSpeedOffsetMax,d.51 Offset max. Lüfterdrehzahl,08,value,s,SIN,,rpm,Offset max. Drehzahl
+w,bai,install,FanSpeedOffsetMax,d.51 Offset max. Lüfterdrehzahl,08,value,m,SIN,,rpm,Offset max. Drehzahl
+r,bai,,FanSpeedOffsetMin,d.50 Offet min. Lüfterdrehzahl,08,value,s,SIN,,rpm,Offset min. Drehzahl
+w,bai,install,FanSpeedOffsetMin,d.50 Offet min. Lüfterdrehzahl,08,value,m,SIN,,rpm,Offset min. Drehzahl
+r,bai,,FanStarts,FanCommunt_DK: Anzahl der Lüfterschaltspiele,08,value,s,UIN,,,Anzahl Starts
+r,bai,,Flame,Flammensignal,08,value,s,UCH,15=on;240=off,,
+r,bai,,FlameSensingASIC,SD_Flame_Sensing_ASIC_DK: Ioni/ADC Wert vom Flammenwächter,08,value,s,UIN,,,
+r,bai,,FloorHeatingContact,Eingang Anlegethermostat,08,value,s,UCH,0=off;1=on,,
+r,bai,,FlowsetHcMax,d.71 Max. Vorlauftemp. Heizbetrieb: Einstellung des maximalen Vorlaufsollwert im Heizbetrieb (bei Linksanschlag des Poti),08,value,s,D2C,,°C,Temperatur
+w,bai,install,FlowsetHcMax,d.71 Max. Vorlauftemp. Heizbetrieb: Einstellung des maximalen Vorlaufsollwert im Heizbetrieb (bei Linksanschlag des Poti),08,value,m,D2C,,°C,Temperatur
+r,bai,,FlowsetHwcMax,d.78 Max. Vorlauftemp. WW: Maximal erlaubte Vorlauftemperatur für die Speicherladung,08,value,s,D2C,,°C,Temperatur
+w,bai,install,FlowsetHwcMax,d.78 Max. Vorlauftemp. WW: Maximal erlaubte Vorlauftemperatur für die Speicherladung,08,value,m,D2C,,°C,Temperatur
+r,bai,,FlowSetPotmeter,Vorlaufsollwert Poti: Vorlaufsollwert Potentiometer,08,value,s,D2C,,°C,Temperatur
+r,bai,,FlowTemp,d.40 Vorlauftemperatur,08,temp,s,D2C,,°C,Temperatur,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,FlowTempDesired,d.05 Vorlaufsolltemperatur: Vorlaufsolltemperatur oder Rücklaufsolltemperatur (wenn Rücklaufregelung aktiviert wurde). Der Maximalwert wird über d.71 und einem eBUS Regler begrenzt.,08,value,s,D2C,,°C,Temperatur
+r,bai,,FlowTempMax,Max. Vorlauftemperatur: Maximaltemperatur gemessen am Vorlaufsensor,08,value,s,D2C,,°C,Temperatur
+r,bai,,Fluegasvalve,Abgasklappe: Flüssiggas Magnetventil,08,value,s,UCH,0=off;1=on,,
+r,bai,,FluegasvalveOpen,Abgasklappe offen: Rückmeldung Flüssiggasventil,08,value,s,UCH,0=off;1=on,,
+r,bai,,Gasvalve3UC,Gasventil 3: Gasventil Schaltsignal (vom Prozessor),08,value,s,UCH,15=on;240=off,,
+r,bai,,Gasvalve,d.30 Gasventil: GMV Ansteuersignal,08,value,s,UCH,15=on;240=off,,
+r,bai,,GasvalveASICFeedback,Rückmeldung Gasventil vom ASIC,08,value,s,UCH,15=on;240=off,,
+r,bai,,GasvalveUC,Schaltsignal für das Gasventil,08,value,s,UCH,15=on;240=off,,
+r,bai,,GasvalveUCFeedback,Rückmeldung Gasventil vom Prozessor,08,value,s,UCH,15=on;240=off,,
+r,bai,,HcHours,d.80 Hz. Betriebsstunden: Betriebsstunden im Heizbetrieb,08,value,s,UIN,,h,Stunden
+r,bai,,HcPumpMode,d.18 Pumpenbetriebsart,08,value,s,UCH,0=post_run;1=permanent;2=winter,,Pumpenbetriebsart für den Heizbetrieb
+w,bai,install,HcPumpMode,d.18 Pumpenbetriebsart,08,value,m,UCH,0=post_run;1=permanent;2=winter,,Pumpenbetriebsart für den Heizbetrieb
+r,bai,,HcPumpStarts,CH_PumpCommunt_DK: Schaltspiele Pumpe,08,value,s,UIN,,,Anzahl Starts
+r,bai,,HcStarts,d.82 Schaltspiele Heizbetrieb,08,value,s,UIN,-100,,Schaltspiele Heizbetrieb
+r,bai,,HcUnderHundredStarts,HZ_UnderHundred_SwiActi_DK: Heat switch cycles under hundred,08,value,s,UCH,,,
+r,bai,,HeatingSwitch,d.23 Winterbetrieb: Wintermodus aktiv (Heizbetrieb und Warmwasser),08,value,s,UCH,0=off;1=on,,
+r,bai,,HoursTillService,d.84 Stunden bis Wartung: Wartungsintervall:Anzahl der Stunden bis zur nächsten Wartung,08,value,s,UIN,,h,Stunden
+w,bai,install,HoursTillService,d.84 Stunden bis Wartung: Wartungsintervall:Anzahl der Stunden bis zur nächsten Wartung,08,value,m,UIN,,h,Stunden
+r,bai,,HwcDemand,d.22 WW Anforderung: Brauchwasseranforderung (Zapfung oder Schaltsignal vom Speicher),08,value,s,UCH,0=no;1=yes,,
+r,bai,,HwcHours,d.81 Betriebsstunden WW: Betriebsstunden Brauchwasser,08,value,s,UIN,,h,Stunden
+r,bai,,HwcImpellorSwitch,Brauchwasserzapfung: WW Zapfung,08,value,s,UCH,0=no;1=yes,,
+r,bai,,HwcPostrunTime,d.72 WW Pumpnenachlaufzeit,08,value,s,UCH,-10,s,Pumpennachlaufzeit nach Speicherladung
+w,bai,install,HwcPostrunTime,d.72 WW Pumpnenachlaufzeit,08,value,m,UCH,-10,s,Pumpennachlaufzeit nach Speicherladung
+r,bai,,HwcSetPotmeter,WW Sollwert Potentiometer: WW Sollwertpotentiometer,08,value,s,D2C,,°C,Temperatur
+r,bai,,HwcStarts,d.83 Schaltspiele BW Betrieb,08,value,s,UIN,-100,,Schaltspiele WW Betrieb
+r,bai,,HwcSwitch,Wasserschalter: WW aus/ein,08,value,s,UCH,0=off;1=on,,
+r,bai,,HwcTemp,d.03 WW Vorlaufsolltemp: Vorlauftemperatur bei Warmwasserzapfung (nur bei Kombi-Heizgeräten),08,temp,s,D2C,,°C,Temperatur,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,HwcTempDesired,d.06 Brauchwassersollwert: Gewünschte Warmwasser Solltemperatur,08,value,s,D2C,,°C,Temperatur
+r,bai,,HwcTempMax,d.20 Max. WW Temperatur: Max. Speichersollwert. Begrenzt den max. Einstellbereich des Potentiometers (Rechtsanschlag).,08,value,s,D2C,,°C,Temperatur
+w,bai,install,HwcTempMax,d.20 Max. WW Temperatur: Max. Speichersollwert. Begrenzt den max. Einstellbereich des Potentiometers (Rechtsanschlag).,08,value,m,D2C,,°C,Temperatur
+r,bai,,HwcTypes,WW Typen: DHW type of the appliance,08,value,s,UCH,,,
+r,bai,,HwcUnderHundredStarts,BW_UnderHundred_SwiActi_DK: DHW switch cycles under hundred,08,value,s,UCH,,,
+r,bai,,HwcWaterflow,d.36 Zapfmenge: WW Durchflußsensor,08,value,s,UIN,100,,
+r,bai,,HwcWaterflowMax,Max. WW Vorlauftemp.: Maximalwert des Warmwassersensors,08,value,s,UIN,100,,
+r,bai,,Ignitor,Zünder: Zündung aktiviert,08,value,s,UCH,15=on;240=off,,
+r,bai,,InitialisationEEPROM,InitialisationEEPROM_DK: EEPROM Initialisierrung (für die Produktion),08,value,s,UCH,0=no;1=yes,,
+r,bai,,IonisationVoltageLevel,d.44 Spannungspegel Ionisationssignal,08,value,s,SIN,10,,Ionisationsspannung: größer 80 = keine Flammekleiner 40 = gutes Flammensignal
+r,bai,,Maintenancedata_HwcTempMax,Max. WW Temperatur: Maximaltemperatur gemessen am Brauchwasserauslaufsensor,08,value,s,D2C,,°C,Temperatur
+r,bai,,MaxIgnitiontime,d.65 Max. Zündzeit,08,value,s,UCH,10,s,Maximale Zündzeit
+r,bai,,MinIgnitiontime,Min. Zündzeit,08,value,s,UCH,10,s,Minimale Zündzeit
+r,bai,,ModulationDesired,Modulationssollwert,08,value,s,SIN,10,%,Modulationssollwert
+r,bai,,OutdoorstempSensor,d.47 Außentemperaturfühler: Außentemperaturwert (ohne Korrekturwert) und Sensorstatus,08,temp,s,D2C,,°C,Temperatur,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,OverflowCounter,Überlauf PM Zähler: Predictive Maintenance counter have got an overflow,08,value,s,UCH,0=no;1=yes,,
+r,bai,,ParamToken,ParamToken_DK: token for parameter managment,08,value,s,UCH,,,
+r,bai,,PartloadHcKW,d.00 Heizungsteillast,08,value,s,UCH,,kW,
+w,bai,install,PartloadHcKW,d.00 Heizungsteillast,08,value,m,UCH,,kW,
+r,bai,,PartloadHwcKW,d.77 Speicherteillast: Teillast für Speicherladung (Geräteleistung kann auf den angegebenen Wert limitiert werden),08,value,s,UCH,,kW,
+w,bai,install,PartloadHwcKW,d.77 Speicherteillast: Teillast für Speicherladung (Geräteleistung kann auf den angegebenen Wert limitiert werden),08,value,m,UCH,,kW,
+r,bai,,PartnumberBox,Partnumber_Box,08,value,s,HEX:5,,,part number of the eBox
+r,bai,,PositionValveSet,d.35 Position VUV: Position des 3-Wege Ventil: 100=Warmwasser 0=Heizbetrieb 40=Mittenstellung,08,value,s,UCH,,,
+r,bai,,PowerValue,Leistungsdaten,08,value,s,HEX:6,,,Geräteleistung (min und max)
+r,bai,,PrAPSCounter,PrAPSCounter_DK: Wartungsdaten,08,value,s,UCH,,,
+r,bai,,PrAPSSum,PrAPSSum_DK: Wartungsdaten,08,value,s,UIN,,s,Sekunden
+r,bai,,PrEnergyCountHc1,PrEnergyCountCH1_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHc1,PrEnergyCountCH1_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergyCountHc2,PrEnergyCountCH2_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHc2,PrEnergyCountCH2_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergyCountHc3,PrEnergyCountCH3_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHc3,PrEnergyCountCH3_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergyCountHwc1,PrEnergyCountDHW1_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHwc1,PrEnergyCountDHW1_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergyCountHwc2,PrEnergyCountDHW2_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHwc2,PrEnergyCountDHW2_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergyCountHwc3,PrEnergyCountDHW3_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergyCountHwc3,PrEnergyCountDHW3_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHc1,PrEnergySumCH1_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHc1,PrEnergySumCH1_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHc2,PrEnergySumCH2_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHc2,PrEnergySumCH2_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHc3,PrEnergySumCH3_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHc3,PrEnergySumCH3_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHwc1,PrEnergySumDHW1_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHwc1,PrEnergySumDHW1_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHwc2,PrEnergySumDHW2_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHwc2,PrEnergySumDHW2_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrEnergySumHwc3,PrEnergySumDHW3_DK: Wartungsdaten,08,value,s,ULG,,,
+w,bai,install,PrEnergySumHwc3,PrEnergySumDHW3_DK: Wartungsdaten,08,value,m,ULG,,,
+r,bai,,PrimaryCircuitFlowrate,d.29 Wasserumlaufmenge,08,value,s,UIN,100,l/min,
+r,bai,,ProductionByte,ProductionByte,08,value,s,UCH,,,
+r,bai,,PrVortexFlowSensorValue,PrVortexFlowSensorValue_DK,08,value,s,SIN,,,Wartungsdaten
+r,bai,,PumpHours,Betriebsstunden Pumpe: Pumpenbetriebsstunden,08,value,s,UIN,,h,Stunden
+r,bai,,PumpHwcFlowNumber,PumpDHWFlowNumber_DK: number of times DHW flow rate was detected,08,value,s,UCH,,,
+r,bai,,PumpHwcFlowSum,PumpDHWFlowSum_DK: summed up DHW flow rate,08,value,s,UIN,,,
+r,bai,,PumpPower,d.15 Leistung Heizungspumpe,08,value,s,UCH,,,
+r,bai,,PumpPowerDesired,d.14 WP_PWMPowerDia_DK: Set-PWM-Powerrate of electronic-pump,08,value,s,UCH,0=auto;1=53;2=60;3=70;4=85;5=100,%,PWM-Leistungsstufe der Heizungspumpe
+w,bai,install,PumpPowerDesired,d.14 WP_PWMPowerDia_DK: Set-PWM-Powerrate of electronic-pump,08,value,m,UCH,0=auto;1=53;2=60;3=70;4=85;5=100,%,PWM-Leistungsstufe der Heizungspumpe
+r,bai,,RemainingBoilerblocktime,d.67 Verbleibende Brennersperrzeit,08,value,s,UCH,,min,Minuten
+r,bai,,ReturnRegulation,d.17 Rücklaufregelung: Aktivierung der Rücklaufregelung,08,value,s,UCH,0=off;1=on,,
+w,bai,install,ReturnRegulation,d.17 Rücklaufregelung: Aktivierung der Rücklaufregelung,08,value,m,UCH,0=off;1=on,,
+r,bai,,ReturnTemp,d.41 Rücklauftemperatur,08,temp,s,D2C,,°C,Temperatur,tempmirror,s,UIN,,°C,,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,ReturnTempMax,Max. Rücklauftemperatur,08,value,s,D2C,,°C,Temperatur
+r,bai,,SecondPumpMode,d.19 Betriebsart 2. Pumpe: Betriebsart 2stufige Pumpe:0 : Brennerbetrieb = Stufe 2 / Vor-Nachlauf = Stufe 11: Brennerbetrieb + Vorlauf = Stufe 1 / Warmwasser = Stufe 22 : Wie 1 aber im Heizbetrieb hängt die Stufe von der Teillast ab (default)3 : Immer Stufe 2,08,value,s,UCH,,,
+w,bai,install,SecondPumpMode,d.19 Betriebsart 2. Pumpe: Betriebsart 2stufige Pumpe:0 : Brennerbetrieb = Stufe 2 / Vor-Nachlauf = Stufe 11: Brennerbetrieb + Vorlauf = Stufe 1 / Warmwasser = Stufe 22 : Wie 1 aber im Heizbetrieb hängt die Stufe von der Teillast ab (default)3 : Immer Stufe 2,08,value,m,UCH,,,
+r,bai,,SerialNumber,SerialNumber,08,value,s,HEX:8,,,Seriennummer AI
+r,bai,,SetFactoryValues,d.96 Werkseinstellungen,08,value,s,UCH,0=no;1=yes,,
+w,bai,install,SetFactoryValues,d.96 Werkseinstellungen,08,value,m,UCH,0=no;1=yes,,
+uw,bai,,SetMode,Betriebsmodus,08,hcmode,m,UCH,0=auto;1=off;2=heat;3=water,,Boiler Modus,flowtempdesired,m,D1C,,°C,Temperatur,hwctempdesired,m,D1C,,°C,Temperatur,hwcflowtempdesired,m,UCH,,°C,Temperatur,ign,m,IGN:1,,,,disablehc,m,BI0:1,,,,disablehwctapping,m,BI1:1,,,,disablehwcload,m,BI2:1,,,,ign_1,m,IGN:1,,,,remotecontrolhcpump,m,BI0:1,,,,releasebackup,m,BI1:1,,,,releasecooling,m,BI2:1,,,
+w,bai,install,SetMode,Betriebsmodus,08,hcmode,m,UCH,0=auto;1=off;2=heat;3=water,,Boiler Modus,flowtempdesired,m,D1C,,°C,Temperatur,hwctempdesired,m,D1C,,°C,Temperatur,hwcflowtempdesired,m,UCH,,°C,Temperatur,ign,m,IGN:1,,,,disablehc,m,BI0:1,,,,disablehwctapping,m,BI1:1,,,,disablehwcload,m,BI2:1,,,,ign_1,m,IGN:1,,,,remotecontrolhcpump,m,BI0:1,,,,releasebackup,m,BI1:1,,,,releasecooling,m,BI2:1,,,
+r,bai,,SHEMaxDeltaHwcFlow,SHE_MaxDeltaFlowDHW_DK: maximum difference between flow and DHW outlet temperature,08,value,s,D2C,,°C,Temperatur
+r,bai,,SHEMaxFlowTemp,Max. WW Vorlauftemp.: Max. Vorlauftemperatur für WW,08,value,s,D2C,,°C,Temperatur
+r,bai,,SolPostHeat,d.58 Solarbetriebsart: Spezielle WW Funktionen:0 = Solarfunktion deaktiviert (default)1 = Solarfunktion aktiviert und WW Sollwert minimal 60°C2 = Solarfunktion aktiviert und WW Sollwert min. 35°C3 = WW Sollwert minimum 60°C,08,value,s,UCH,,,
+w,bai,install,SolPostHeat,d.58 Solarbetriebsart: Spezielle WW Funktionen:0 = Solarfunktion deaktiviert (default)1 = Solarfunktion aktiviert und WW Sollwert minimal 60°C2 = Solarfunktion aktiviert und WW Sollwert min. 35°C3 = WW Sollwert minimum 60°C,08,value,m,UCH,,,
+r,bai,,Statenumber,Statenumber_DK: status number,08,value,s,UCH,,,
+r,bai,,Status01,Vorlauftemperatur/Rücklauftemperatur/Aussentemperatur/WW Temperatur/Speichertemperatur/Pumpenstatus,08,temp,s,D1C,,°C,flow temperature,temp_1,s,D1C,,°C,return temperature,temp_2,s,D2B,,°C,Außentemperatur,temp_3,s,D1C,,°C,hot water temperature,temp_4,s,D1C,,°C,storage temperature,pumpstate,s,UCH,0=off;1=on;2=overrun;4=hwc,,pump status
+r,bai,,Status02,Betriebsart/Maximaltemperatur/ReglerCurrentTemp/Maximaltemperatur/ReglerCurrentTemp,08,hwcmode,s,UCH,0=disabled;1=on;2=off;3=auto,,Warmwasser Modus,temp,s,UCH,,°C,max temperature,temp_1,s,D1C,,°C,current temperature,temp_2,s,UCH,,°C,max temperature,temp_3,s,D1C,,°C,current temperature
+r,bai,,Status16,Außentemperatur,08,value,s,D2C,,°C,Temperatur
+r,bai,,Status,Status,08,temp,s,D2C,,°C,Temperatur,press,s,FLT,,bar,Druck,press_1,s,FLT,,bar,Druck,hcmode,s,UCH,0=off;1=cooling;3=heat;4=water,,Boiler Modus,hex,s,HEX:1,,,
+uw,bai,,StatusCirPump,Status Zirkulationspumpe,08,value,m,UCH,0=off;100=on,,
+r,bai,,Storageloadpump,d.12 Speicherladepumpe: Ladepumpenanforderung,08,value,s,UCH,,%,
+r,bai,,StorageLoadPumpHours,TankLoadPumpOperationHours_DK: Preditive maintenance data,08,value,s,UIN,,h,Stunden
+r,bai,,StorageloadPumpStarts,TankloadPumpCommunt_DK: Preditive maintenance data,08,value,s,UIN,,,Anzahl Starts
+r,bai,,StorageLoadTimeMax,d.75 Max. Speicherladezeit: Max. Speicherladezeit für Speicher ohne eigene Regelung,08,value,s,UCH,,min,Minuten
+w,bai,install,StorageLoadTimeMax,d.75 Max. Speicherladezeit: Max. Speicherladezeit für Speicher ohne eigene Regelung,08,value,m,UCH,,min,Minuten
+r,bai,,StoragereleaseClock,d.25 Speicherfreigabe: Freigabe der Speichrladung oder des Warmstartspeichers durcheinen eBUS Regler,08,value,s,UCH,0=no;1=yes,,
+r,bai,,StorageTemp,d.04 Speicheristtemp: Aktuelle Temperatur des Warmstartspeichers (bei Kombigeräten) oder aktuelle Speichertemperatur bei (VC Geräten),08,temp,s,D2C,,°C,Temperatur,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,StorageTempDesired,d.07 Speichersolltemp: VCW: Solltemperatur des WarmstartspeichersVC: Solltemperatur des externen Speichers,08,value,s,D2C,,°C,Temperatur
+r,bai,,StorageTempMax,Max. Speichertemp.: Maximaltemperatur gemessen am Speichersensor,08,value,s,D2C,,°C,Temperatur
+r,bai,,TargetFanSpeed,d.33 Lüfter Solldrehzahl,08,value,s,UIN,,rpm,Drehzahlsollwert des Lüfters
+r,bai,,TargetFanSpeedOutput,Lüfter Solldrehzahl,08,value,s,UIN,,rpm,Lüfterdrehzahl
+r,bai,,TempDiffBlock,TempDiffBlock_DK: Number of modulationblocking of the boilers cause of to high/incorrect difference of flow/return temperatures,08,value,s,UCH,,°C,Temperatur
+r,bai,,TempDiffFailure,TempDiffFailure_DK: Anzahl der Abschaltungen wegen zu hoher / fehlerhafter Differenz von Vor- und Rücklauftemperatur,08,value,s,UCH,,°C,Temperatur
+r,bai,,TempGradientFailure,Gradientenfehler: Anzahl der Boilerabschaltung wegen zu hohem Gradient (S.54),08,value,s,UCH,,°C,Temperatur
+r,bai,,Templimiter,Rückmeldung des Temperaturbegrenzer Signals,08,value,s,UCH,15=on;240=off,,
+r,bai,,TemplimiterWithNTC,SD_STL_with_NTC: Temperaturbegrenzer Art:1 = NTC0 = Schaltkontakt,08,value,s,UCH,15=yes;240=no,,
+r,bai,,TempMaxDiffExtTFT,MaxTempDiffExtTFT_DK: Predictive maintenance data,08,value,s,D2C,,°C,Temperatur
+r,bai,,Testbyte,Testbyte_DK: Testbyte (relevant for the Tester),08,value,s,UCH,,,
+r,bai,,TimerInputHc,Eingang Schaltuhr: timer input (block heatdemand),08,value,s,UCH,0=off;1=on,,
+r,bai,,ValveMode,d.70 VUV Betriebsart: Betriebsart 3-Wegeventil:0 = normaler Modus1 = Mittenstellung2 = Permanent Heizbetrieb (keine Umschaltung in den WW Betrieb),08,value,s,UCH,,,
+w,bai,install,ValveMode,d.70 VUV Betriebsart: Betriebsart 3-Wegeventil:0 = normaler Modus1 = Mittenstellung2 = Permanent Heizbetrieb (keine Umschaltung in den WW Betrieb),08,value,m,UCH,,,
+r,bai,,ValveStarts,3WV Schaltspiele: Anzahl der 3WV Umschaltungen,08,value,s,UIN,,,Anzahl Starts
+r,bai,,VolatileLockout,Verriegelnde Störabschaltungen: WAHR: STB Fehler sind verriegelnd,08,value,s,UCH,15=yes;240=no,,
+r,bai,,VolatileLockoutIFCGV,SD_VolatileLockout_IFC_GV_DK: Alle IFC Fehler sind nichtflüchtig,08,value,s,UCH,15=yes;240=no,,
+r,bai,,VortexFlowSensor,"VortexFlowSensor_DK: Predictive Maintenance data, CH water flow",08,value,s,UIN,,,
+r,bai,,WarmstartDemand,Warmstartanforderung: Warmstartaktivierung,08,value,s,UCH,0=no;1=yes,,
+r,bai,,WarmstartOffset,d.73 Warmstart Offset: Offset für Warmstartsollwert (nur bei VCW),08,value,s,D2C,,°C,Temperatur
+w,bai,install,WarmstartOffset,d.73 Warmstart Offset: Offset für Warmstartsollwert (nur bei VCW),08,value,m,D2C,,°C,Temperatur
+r,bai,,WaterHcFlowMax,MaxWaterFlowCH_DK: Wartungsdaten,08,value,s,UIN,,,
+r,bai,,WaterPressure,Wasserdruck,08,press,s,FLT,,bar,Druck,sensor,s,UCH,0=ok;85=circuit;170=cutoff,,Fühlerstatus
+r,bai,,WaterpressureBranchControlOff,Drucksprungerkennung ausschalten: Überwachung der Druckänderung beim Schalten der Pumpe kann hiermit aktiviert oder deaktiviert werden,08,value,s,UCH,0=off;1=on,,
+r,bai,,WaterpressureMeasureCounter,WaterpressureMeasureCounter_DK: Wartungsdaten,08,value,s,UCH,,,
+r,bai,,WaterpressureVariantSum,WaterpressureVariantSum_DK: Wartungsdaten,08,value,s,UIN,,mbar,Druck
+r,bai,,WP,d.10 Wasserpumpe: Interne Heizungspumpe,08,value,s,UCH,0=off;1=on,,
+r,bai,,WPPostrunTime,d.01 Pumpennachlaufzeit: Wasserpumpennachlaufzeit nach Heizbetrieb,08,value,s,UCH,,min,Minuten
+w,bai,install,WPPostrunTime,d.01 Pumpennachlaufzeit: Wasserpumpennachlaufzeit nach Heizbetrieb,08,value,m,UCH,,min,Minuten
+r,bai,,WPSecondStage,WP_SecondStage_DK: Second stage of the pump activated,08,value,s,UCH,0=off;1=on,,
+u,Broadcast,,Datetime,Datum Uhrzeit,fe,outsidetemp,m,D2B,,°C,Temperatur,time,m,BTI,,,Uhrzeit,date,m,BDA,,,Datum
+u,Broadcast,,Error,Fehlernachricht,fe,error,m,STR:10,,,
+u,Broadcast,,HwcStatus,Status Warmwasser,fe,onoff,m,UCH,0=off;1=on,,,vf1,m,UCH,,°C,Temperatur,onoff_1,m,UCH,0=off;1=on,,
+r,Broadcast,,Id,Identifikation,,mf,s,UCH,6=Dungs;15=FH Ostfalia;16=TEM;17=Lamberti;20=CEB;21=Landis-Staefa;22=FERRO;23=MONDIAL;24=Wikon;25=Wolf;32=RAWE;48=Satronic;64=ENCON;80=Kromschröder;96=Eberle;101=EBV;117=Grässlin;133=ebm-papst;149=SIG;165=Theben;167=Thermowatt;181=Vaillant;192=Toby;197=Weishaupt;253=ebusd,,Geräte-Hersteller,id,s,STR:5,,,Geräte-ID,sw,s,PIN,,,Software Version,hw,s,PIN,,,Hardware-Version
+u,Broadcast,,IdAnswer,answer to identification query,fe,mf,m,UCH,6=Dungs;15=FH Ostfalia;16=TEM;17=Lamberti;20=CEB;21=Landis-Staefa;22=FERRO;23=MONDIAL;24=Wikon;25=Wolf;32=RAWE;48=Satronic;64=ENCON;80=Kromschröder;96=Eberle;101=EBV;117=Grässlin;133=ebm-papst;149=SIG;165=Theben;167=Thermowatt;181=Vaillant;192=Toby;197=Weishaupt;253=ebusd,,Geräte-Hersteller,id,m,STR:5,,,Geräte-ID,sw,m,PIN,,,Software Version,hw,m,PIN,,,Hardware-Version
+w,Broadcast,,IdQuery,query identification,fe,
+u,Broadcast,,Load,Quick - WW Speicherladung,fe,value,m,UCH,0=off;1=on,,
+u,Broadcast,,Outsidetemp,Außentemperatur,fe,value,m,D2B,,°C,Temperatur
+w,Broadcast,,Queryexistence,Existenzanfrage,fe,
+u,Broadcast,,Signoflife,Lebenszeichen,fe,
+u,Broadcast,,Vdatetime,Datum Uhrzeit,fe,time,m,BTI,,,,date,m,BDA,,,
+w,Broadcast,,Vdatetime,Datum Uhrzeit,fe,time,m,BTI,,,,date,m,BDA,,,
+r,General,,Valuerange,Register Wertebereich,,id,m,UIN,,,Registernummer,ign,s,IGN:2,,,,cur,s,UIN,,,aktueller Wert,min,s,UIN,,,minimaler Wert,max,s,UIN,,,maximaler Wert,def,s,UIN,,,default Wert
+r,Memory,,Eeprom,EEPROM data,,address,m,UIN,,,Startadresse,count,m,UCH,,,number of bytes,data,s,HEX:1,,,Datenbytes
+w,Memory,install,Eeprom,EEPROM data,,address,m,UIN,,,Startadresse,data,m,HEX:1,,,Datenbytes
+r,Memory,,Ram,RAM data,,address,m,UIN,,,Startadresse,count,m,UCH,,,number of bytes,data,s,HEX:1,,,Datenbytes
+w,Memory,install,Ram,RAM data,,address,m,UIN,,,Startadresse,data,m,HEX:1,,,Datenbytes
+r,Scan,,Id,Scan ID,,ign,s,IGN:1,,,,prefix,s,STR:2,,,,year,s,STR:2,,,,week,s,STR:2,,,,product,s,STR:10,,,,supplier,s,STR:4,,,,counter,s,STR:6,,,,suffix,s,STR:2,,,
+r,scan.08,,,,08,MF,s,UCH,6=Dungs;15=FH Ostfalia;16=TEM;17=Lamberti;20=CEB;21=Landis-Staefa;22=FERRO;23=MONDIAL;24=Wikon;25=Wolf;32=RAWE;48=Satronic;64=ENCON;80=Kromschroeder;96=Eberle;101=EBV;117=Graesslin;133=ebm-papst;149=SIG;165=Theben;167=Thermowatt;181=Vaillant;192=Toby;197=Weishaupt;253=ebusd.eu,,,ID,s,STR:5,,,,SW,s,PIN,,,,HW,s,PIN,,,
+r,Scan.08,,Id,Scan ID,08,ign,s,IGN:1,,,,prefix,s,STR:2,,,,year,s,STR:2,,,,week,s,STR:2,,,,product,s,STR:10,,,,supplier,s,STR:4,,,,counter,s,STR:6,,,,suffix,s,STR:2,,,
+r,scan.15,,,,15,MF,s,UCH,6=Dungs;15=FH Ostfalia;16=TEM;17=Lamberti;20=CEB;21=Landis-Staefa;22=FERRO;23=MONDIAL;24=Wikon;25=Wolf;32=RAWE;48=Satronic;64=ENCON;80=Kromschroeder;96=Eberle;101=EBV;117=Graesslin;133=ebm-papst;149=SIG;165=Theben;167=Thermowatt;181=Vaillant;192=Toby;197=Weishaupt;253=ebusd.eu,,,ID,s,STR:5,,,,SW,s,PIN,,,,HW,s,PIN,,,
+r,scan.26,,,,26,MF,s,UCH,6=Dungs;15=FH Ostfalia;16=TEM;17=Lamberti;20=CEB;21=Landis-Staefa;22=FERRO;23=MONDIAL;24=Wikon;25=Wolf;32=RAWE;48=Satronic;64=ENCON;80=Kromschroeder;96=Eberle;101=EBV;117=Graesslin;133=ebm-papst;149=SIG;165=Theben;167=Thermowatt;181=Vaillant;192=Toby;197=Weishaupt;253=ebusd.eu,,,ID,s,STR:5,,,,SW,s,PIN,,,,HW,s,PIN,,,
+r,700,,Z1DayTemp,desired temperature zone 1,15,ign,s,IGN:4,,,,value,s,EXP,,°C,
+w,700,,Z1DayTemp,desired temperature zone 1,15,value,m,EXP,,°C,
+r,700,,Z1OpMode,operation mode zone 1,15,ign,s,IGN:4,,,,value,s,UIN,0=off;1=auto;2=day;3=night,,
+w,700,,Z1OpMode,operation mode zone 1,15,value,m,UIN,0=off;1=auto;2=day;3=night,,
+r,700,,Z1RoomTemp,room temperature zone 1,15,ign,s,IGN:4,,,,value,s,EXP,,°C,
+r,700,,HwcStorageTemp,hwc storage temperature,15,ign,s,IGN:4,,,,value,s,EXP,,°C,
+w,700,install,HwcMaxFlowTempDesired,maximum flow temperature for hwc,15,value,m,EXP,,°C,

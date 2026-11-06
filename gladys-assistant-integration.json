@@ -1,0 +1,863 @@
+{
+  "manifest_version": 1,
+  "type": "device",
+  "name": "ebusd",
+  "description": {
+    "en": "Vaillant, Saunier Duval, Wolf… boilers and heat pumps on the eBUS, through ebusd, locally.",
+    "fr": "Chaudières et PAC Vaillant, Saunier Duval, Wolf… sur l’eBUS, via ebusd, en local.",
+    "de": "Heizkessel und Wärmepumpen von Vaillant, Saunier Duval, Wolf… am eBUS, über ebusd, lokal.",
+    "es": "Calderas y bombas de calor Vaillant, Saunier Duval, Wolf… en el eBUS, con ebusd, en local."
+  },
+  "version": "0.1.0",
+  "docker_image": "ghcr.io/william-de71/gladys-ebusd:0.1.0",
+  "gladys_version": ">=5.3.0",
+  "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-ebusd/main/cover.jpg",
+  "categories": ["climate", "energy"],
+  "keywords": [
+    "eBUS",
+    "Vaillant",
+    "Saunier Duval",
+    "Wolf",
+    "Kromschröder",
+    "ecoTEC",
+    "VRC 700",
+    "boiler",
+    "chaudière",
+    "heat pump"
+  ],
+  "transports": ["local"],
+  "config_schema": [
+    {
+      "key": "intro",
+      "type": "section",
+      "label": {
+        "en": "Your ebusd",
+        "fr": "Votre ebusd",
+        "de": "Ihr ebusd",
+        "es": "Su ebusd"
+      },
+      "description": {
+        "en": "ebusd is a free program that talks to the eBUS of your heating (Vaillant, Saunier Duval, AWB, Bulex, Wolf, Kromschröder…) through an eBUS adapter (for example the eBUS Adapter Shield). Run it on a Raspberry Pi, a NAS or the Gladys machine, with its configuration files (default) and its TCP port 8888 open to the network (no --localhost). Gladys reads it on the local network: nothing leaves your home. Not affiliated with the ebusd project or the brands above.",
+        "fr": "ebusd est un programme libre qui dialogue avec l’eBUS de votre chauffage (Vaillant, Saunier Duval, AWB, Bulex, Wolf, Kromschröder…) au moyen d’un adaptateur eBUS (par exemple l’eBUS Adapter Shield). Faites-le tourner sur un Raspberry Pi, un NAS ou la machine de Gladys, avec ses fichiers de configuration (par défaut) et son port TCP 8888 ouvert au réseau (sans --localhost). Gladys le lit sur le réseau local : rien ne sort de chez vous. Sans lien avec le projet ebusd ni les marques citées.",
+        "de": "ebusd ist ein freies Programm, das über einen eBUS-Adapter (zum Beispiel das eBUS Adapter Shield) mit dem eBUS Ihrer Heizung spricht (Vaillant, Saunier Duval, AWB, Bulex, Wolf, Kromschröder…). Betreiben Sie es auf einem Raspberry Pi, einem NAS oder dem Gladys-Rechner, mit seinen Konfigurationsdateien (Standard) und mit für das Netzwerk geöffnetem TCP-Port 8888 (kein --localhost). Gladys liest es im lokalen Netzwerk: nichts verlässt Ihr Zuhause. Nicht mit dem ebusd-Projekt oder den genannten Marken verbunden.",
+        "es": "ebusd es un programa libre que dialoga con el eBUS de su calefacción (Vaillant, Saunier Duval, AWB, Bulex, Wolf, Kromschröder…) mediante un adaptador eBUS (por ejemplo el eBUS Adapter Shield). Ejecútelo en una Raspberry Pi, un NAS o el equipo de Gladys, con sus archivos de configuración (por defecto) y su puerto TCP 8888 abierto a la red (sin --localhost). Gladys lo lee en la red local: nada sale de su casa. Sin relación con el proyecto ebusd ni con las marcas citadas."
+      },
+      "links": [
+        {
+          "url": "https://github.com/William-De71/gladys-ebusd/blob/main/docs/en.md",
+          "label": {
+            "en": "Setup guide",
+            "fr": "Guide d’installation",
+            "de": "Installationsanleitung",
+            "es": "Guía de instalación"
+          }
+        },
+        {
+          "url": "https://github.com/john30/ebusd/wiki",
+          "label": {
+            "en": "ebusd documentation",
+            "fr": "Documentation d’ebusd",
+            "de": "ebusd-Dokumentation",
+            "es": "Documentación de ebusd"
+          }
+        }
+      ]
+    },
+    {
+      "key": "host",
+      "type": "string",
+      "default": "",
+      "label": {
+        "en": "Address of ebusd",
+        "fr": "Adresse d’ebusd",
+        "de": "Adresse von ebusd",
+        "es": "Dirección de ebusd"
+      },
+      "placeholder": {
+        "en": "192.168.1.30",
+        "fr": "192.168.1.30",
+        "de": "192.168.1.30",
+        "es": "192.168.1.30"
+      },
+      "description": {
+        "en": "The IP address or the name of the machine where ebusd runs (“localhost” does not work: Gladys runs the integration in its own container).",
+        "fr": "L’adresse IP ou le nom de la machine où tourne ebusd (« localhost » ne fonctionne pas : Gladys fait tourner l’intégration dans son propre conteneur).",
+        "de": "Die IP-Adresse oder der Name des Rechners, auf dem ebusd läuft („localhost“ funktioniert nicht: Gladys führt die Integration in einem eigenen Container aus).",
+        "es": "La dirección IP o el nombre del equipo donde funciona ebusd («localhost» no funciona: Gladys ejecuta la integración en su propio contenedor)."
+      }
+    },
+    {
+      "key": "port",
+      "type": "number",
+      "default": 8888,
+      "label": {
+        "en": "TCP port",
+        "fr": "Port TCP",
+        "de": "TCP-Port",
+        "es": "Puerto TCP"
+      },
+      "description": {
+        "en": "The --port option of ebusd, 8888 unless you changed it.",
+        "fr": "L’option --port d’ebusd, 8888 sauf si vous l’avez changée.",
+        "de": "Die Option --port von ebusd, 8888, sofern nicht geändert.",
+        "es": "La opción --port de ebusd, 8888 salvo que la haya cambiado."
+      }
+    },
+    {
+      "key": "user",
+      "type": "string",
+      "default": "",
+      "label": {
+        "en": "User (optional)",
+        "fr": "Utilisateur (facultatif)",
+        "de": "Benutzer (optional)",
+        "es": "Usuario (opcional)"
+      },
+      "description": {
+        "en": "Only if ebusd uses an access file (--aclfile): the user Gladys signs in with.",
+        "fr": "Seulement si ebusd utilise un fichier d’accès (--aclfile) : l’utilisateur avec lequel Gladys se connecte.",
+        "de": "Nur wenn ebusd eine Zugriffsdatei (--aclfile) verwendet: der Benutzer, mit dem sich Gladys anmeldet.",
+        "es": "Solo si ebusd usa un archivo de acceso (--aclfile): el usuario con el que Gladys se conecta."
+      }
+    },
+    {
+      "key": "secret",
+      "type": "secret",
+      "label": {
+        "en": "Secret (optional)",
+        "fr": "Secret (facultatif)",
+        "de": "Geheimnis (optional)",
+        "es": "Secreto (opcional)"
+      },
+      "description": {
+        "en": "The secret of that user in the access file.",
+        "fr": "Le secret de cet utilisateur dans le fichier d’accès.",
+        "de": "Das Geheimnis dieses Benutzers in der Zugriffsdatei.",
+        "es": "El secreto de ese usuario en el archivo de acceso."
+      }
+    },
+    {
+      "key": "readings",
+      "type": "section",
+      "label": {
+        "en": "What Gladys reads",
+        "fr": "Ce que Gladys lit",
+        "de": "Was Gladys liest",
+        "es": "Qué lee Gladys"
+      },
+      "description": {
+        "en": "Gladys follows every value that changes on the bus as it happens, and reads the others at the interval below, from the memory of ebusd when it is recent enough. Each eBUS device (boiler, controller, heat pump, heating circuit…) becomes a Gladys device; its features are the useful values ebusd has already seen (temperatures, pressure, flame, modes, hours, starts, error), plus the well-known ones of Vaillant installations.",
+        "fr": "Gladys suit en direct chaque valeur qui change sur le bus, et lit les autres à l’intervalle ci-dessous, dans la mémoire d’ebusd quand elle est assez récente. Chaque appareil eBUS (chaudière, régulateur, pompe à chaleur, circuit de chauffage…) devient un appareil Gladys ; ses fonctionnalités sont les valeurs utiles qu’ebusd a déjà vues (températures, pression, flamme, modes, heures, démarrages, erreur), plus les valeurs connues des installations Vaillant.",
+        "de": "Gladys verfolgt jeden Wert, der sich auf dem Bus ändert, sofort, und liest die übrigen im unten gewählten Intervall, aus dem Speicher von ebusd, wenn er aktuell genug ist. Jedes eBUS-Gerät (Heizkessel, Regler, Wärmepumpe, Heizkreis…) wird ein Gladys-Gerät; seine Funktionen sind die nützlichen Werte, die ebusd bereits gesehen hat (Temperaturen, Druck, Flamme, Betriebsarten, Stunden, Starts, Fehler), plus die bekannten Werte von Vaillant-Anlagen.",
+        "es": "Gladys sigue en directo cada valor que cambia en el bus, y lee los demás con el intervalo de abajo, de la memoria de ebusd cuando es bastante reciente. Cada dispositivo eBUS (caldera, regulador, bomba de calor, circuito de calefacción…) se convierte en un dispositivo de Gladys; sus funciones son los valores útiles que ebusd ya ha visto (temperaturas, presión, llama, modos, horas, arranques, error), más los conocidos de las instalaciones Vaillant."
+      }
+    },
+    {
+      "key": "poll_interval",
+      "type": "select",
+      "default": "120",
+      "label": {
+        "en": "Reading interval",
+        "fr": "Intervalle de lecture",
+        "de": "Leseintervall",
+        "es": "Intervalo de lectura"
+      },
+      "description": {
+        "en": "The eBUS is slow and shared with your heating: a few minutes is plenty.",
+        "fr": "L’eBUS est lent et partagé avec votre chauffage : quelques minutes suffisent largement.",
+        "de": "Der eBUS ist langsam und wird mit Ihrer Heizung geteilt: einige Minuten genügen.",
+        "es": "El eBUS es lento y compartido con su calefacción: unos minutos bastan."
+      },
+      "options": [
+        {
+          "value": "60",
+          "label": {
+            "en": "Every minute",
+            "fr": "Toutes les minutes",
+            "de": "Jede Minute",
+            "es": "Cada minuto"
+          }
+        },
+        {
+          "value": "120",
+          "label": {
+            "en": "Every 2 minutes",
+            "fr": "Toutes les 2 minutes",
+            "de": "Alle 2 Minuten",
+            "es": "Cada 2 minutos"
+          }
+        },
+        {
+          "value": "300",
+          "label": {
+            "en": "Every 5 minutes",
+            "fr": "Toutes les 5 minutes",
+            "de": "Alle 5 Minuten",
+            "es": "Cada 5 minutos"
+          }
+        },
+        {
+          "value": "600",
+          "label": {
+            "en": "Every 10 minutes",
+            "fr": "Toutes les 10 minutes",
+            "de": "Alle 10 Minuten",
+            "es": "Cada 10 minutos"
+          }
+        }
+      ]
+    },
+    {
+      "key": "messages",
+      "type": "select",
+      "default": "useful",
+      "label": {
+        "en": "Values offered",
+        "fr": "Valeurs proposées",
+        "de": "Angebotene Werte",
+        "es": "Valores ofrecidos"
+      },
+      "options": [
+        {
+          "value": "useful",
+          "label": {
+            "en": "The useful ones",
+            "fr": "Les valeurs utiles",
+            "de": "Die nützlichen",
+            "es": "Los útiles"
+          }
+        },
+        {
+          "value": "all",
+          "label": {
+            "en": "Every value ebusd has seen",
+            "fr": "Toutes celles qu’ebusd a vues",
+            "de": "Alle, die ebusd gesehen hat",
+            "es": "Todos los que ebusd ha visto"
+          }
+        }
+      ]
+    },
+    {
+      "key": "extra_messages",
+      "type": "string",
+      "default": "",
+      "label": {
+        "en": "Extra messages (optional)",
+        "fr": "Messages en plus (facultatif)",
+        "de": "Zusätzliche Nachrichten (optional)",
+        "es": "Mensajes adicionales (opcional)"
+      },
+      "placeholder": {
+        "en": "bai.PumpPower, 700.Z1NightTemp",
+        "fr": "bai.PumpPower, 700.Z1NightTemp",
+        "de": "bai.PumpPower, 700.Z1NightTemp",
+        "es": "bai.PumpPower, 700.Z1NightTemp"
+      },
+      "description": {
+        "en": "Circuit and message names as ebusd shows them (ebusctl find), separated by commas: Gladys reads them even if ebusd has not seen them yet.",
+        "fr": "Noms de circuit et de message tels qu’ebusd les affiche (ebusctl find), séparés par des virgules : Gladys les lit même si ebusd ne les a pas encore vus.",
+        "de": "Kreis- und Nachrichtennamen, wie ebusd sie anzeigt (ebusctl find), durch Kommas getrennt: Gladys liest sie, auch wenn ebusd sie noch nicht gesehen hat.",
+        "es": "Nombres de circuito y de mensaje tal como los muestra ebusd (ebusctl find), separados por comas: Gladys los lee aunque ebusd aún no los haya visto."
+      }
+    },
+    {
+      "key": "changes",
+      "type": "section",
+      "label": {
+        "en": "Changing settings",
+        "fr": "Modifier les réglages",
+        "de": "Einstellungen ändern",
+        "es": "Cambiar ajustes"
+      },
+      "description": {
+        "en": "Off by default: Gladys only reads. Once allowed, Gladys can change what the controller lets everyone change: room targets (5 to 30 °C), hot water target (35 to 70 °C), operating modes, on/off. Never the installer or service settings. One message at most once a minute, 100 changes a day at most.",
+        "fr": "Désactivé par défaut : Gladys ne fait que lire. Une fois autorisé, Gladys peut changer ce que le régulateur laisse changer à tout le monde : consignes ambiantes (5 à 30 °C), consigne d’eau chaude (35 à 70 °C), modes de fonctionnement, marche/arrêt. Jamais les réglages installateur ou SAV. Un même message au plus une fois par minute, 100 modifications par jour au maximum.",
+        "de": "Standardmäßig aus: Gladys liest nur. Wenn erlaubt, kann Gladys ändern, was der Regler jedem erlaubt: Raum-Solltemperaturen (5 bis 30 °C), Warmwasser-Soll (35 bis 70 °C), Betriebsarten, Ein/Aus. Nie die Installateur- oder Service-Einstellungen. Dieselbe Nachricht höchstens einmal pro Minute, höchstens 100 Änderungen pro Tag.",
+        "es": "Desactivado por defecto: Gladys solo lee. Una vez permitido, Gladys puede cambiar lo que el regulador deja cambiar a todos: consignas de ambiente (5 a 30 °C), consigna de agua caliente (35 a 70 °C), modos de funcionamiento, encendido/apagado. Nunca los ajustes de instalador o de servicio técnico. Un mismo mensaje como máximo una vez por minuto, 100 cambios al día como máximo."
+      }
+    },
+    {
+      "key": "allow_writes",
+      "type": "boolean",
+      "default": false,
+      "label": {
+        "en": "Allow changes",
+        "fr": "Autoriser les modifications",
+        "de": "Änderungen erlauben",
+        "es": "Permitir cambios"
+      },
+      "description": {
+        "en": "Tick only if you know these settings: a wrong one can leave the house cold. Check the manual of your controller.",
+        "fr": "À cocher seulement si vous connaissez ces réglages : un mauvais réglage peut laisser la maison froide. Consultez la notice de votre régulateur.",
+        "de": "Nur aktivieren, wenn Sie diese Einstellungen kennen: eine falsche kann das Haus kalt lassen. Siehe Anleitung Ihres Reglers.",
+        "es": "Márquelo solo si conoce estos ajustes: uno incorrecto puede dejar la casa fría. Consulte el manual de su regulador."
+      }
+    },
+    {
+      "key": "language",
+      "type": "select",
+      "default": "en",
+      "label": {
+        "en": "Language of the names and texts",
+        "fr": "Langue des noms et des textes",
+        "de": "Sprache der Namen und Texte",
+        "es": "Idioma de los nombres y textos"
+      },
+      "description": {
+        "en": "Gladys does not tell integrations the language of its users: choose the one of the device and feature names and of the error messages.",
+        "fr": "Gladys n’indique pas aux intégrations la langue de ses utilisateurs : choisissez celle des noms des appareils et des fonctionnalités et des messages d’erreur.",
+        "de": "Gladys teilt Integrationen die Sprache der Benutzer nicht mit: Wählen Sie die der Geräte- und Funktionsnamen und der Fehlermeldungen.",
+        "es": "Gladys no indica a las integraciones el idioma de sus usuarios: elija el de los nombres de dispositivos y funciones y de los mensajes de error."
+      },
+      "options": [
+        {
+          "value": "en",
+          "label": {
+            "en": "English",
+            "fr": "Anglais",
+            "de": "Englisch",
+            "es": "Inglés"
+          }
+        },
+        {
+          "value": "fr",
+          "label": {
+            "en": "French",
+            "fr": "Français",
+            "de": "Französisch",
+            "es": "Francés"
+          }
+        },
+        {
+          "value": "de",
+          "label": {
+            "en": "German",
+            "fr": "Allemand",
+            "de": "Deutsch",
+            "es": "Alemán"
+          }
+        },
+        {
+          "value": "es",
+          "label": {
+            "en": "Spanish",
+            "fr": "Espagnol",
+            "de": "Spanisch",
+            "es": "Español"
+          }
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "key": "test_connection",
+      "timeout_seconds": 60,
+      "label": {
+        "en": "Test ebusd and search the devices",
+        "fr": "Tester ebusd et chercher les appareils",
+        "de": "ebusd testen und Geräte suchen",
+        "es": "Probar ebusd y buscar los dispositivos"
+      },
+      "description": {
+        "en": "Connects to ebusd, checks the eBUS signal and lists the eBUS devices found with their number of values.",
+        "fr": "Se connecte à ebusd, vérifie le signal eBUS et liste les appareils eBUS trouvés avec leur nombre de valeurs.",
+        "de": "Verbindet sich mit ebusd, prüft das eBUS-Signal und listet die gefundenen eBUS-Geräte mit ihrer Anzahl an Werten.",
+        "es": "Se conecta a ebusd, comprueba la señal eBUS y lista los dispositivos eBUS encontrados con su número de valores."
+      }
+    }
+  ],
+  "widgets": [
+    {
+      "key": "heating",
+      "icon": "thermometer",
+      "label": {
+        "en": "Heating",
+        "fr": "Chauffage",
+        "de": "Heizung",
+        "es": "Calefacción"
+      },
+      "description": {
+        "en": "Outdoor, flow, return, room and hot water temperatures, pressure, flame, modes, error.",
+        "fr": "Températures extérieure, départ, retour, ambiante, eau chaude, pression, flamme, modes, erreur.",
+        "de": "Außen-, Vorlauf-, Rücklauf-, Raum- und Warmwassertemperatur, Druck, Flamme, Modi, Fehler.",
+        "es": "Temperaturas exterior, impulsión, retorno, ambiente y agua caliente, presión, llama, modos, error."
+      }
+    },
+    {
+      "key": "history",
+      "icon": "trending-up",
+      "label": {
+        "en": "Heating curves",
+        "fr": "Courbes du chauffage",
+        "de": "Heizungsverlauf",
+        "es": "Curvas de calefacción"
+      },
+      "description": {
+        "en": "Outdoor, flow, return and hot water temperatures over time.",
+        "fr": "Températures extérieure, départ, retour et eau chaude dans le temps.",
+        "de": "Außen-, Vorlauf-, Rücklauf- und Warmwassertemperatur im Verlauf.",
+        "es": "Temperaturas exterior, impulsión, retorno y agua caliente en el tiempo."
+      },
+      "settings": [
+        {
+          "key": "period",
+          "type": "select",
+          "default": "last-day",
+          "label": {
+            "en": "Period",
+            "fr": "Période",
+            "de": "Zeitraum",
+            "es": "Periodo"
+          },
+          "options": [
+            {
+              "value": "last-day",
+              "label": {
+                "en": "24 hours",
+                "fr": "24 heures",
+                "de": "24 Stunden",
+                "es": "24 horas"
+              }
+            },
+            {
+              "value": "last-three-days",
+              "label": {
+                "en": "3 days",
+                "fr": "3 jours",
+                "de": "3 Tage",
+                "es": "3 días"
+              }
+            },
+            {
+              "value": "last-week",
+              "label": {
+                "en": "7 days",
+                "fr": "7 jours",
+                "de": "7 Tage",
+                "es": "7 días"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "bus",
+      "icon": "activity",
+      "label": {
+        "en": "eBUS",
+        "fr": "eBUS",
+        "de": "eBUS",
+        "es": "eBUS"
+      },
+      "description": {
+        "en": "ebusd and the bus: signal, traffic, the devices seen with their model and software.",
+        "fr": "ebusd et le bus : signal, trafic, les appareils vus avec leur modèle et leur logiciel.",
+        "de": "ebusd und der Bus: Signal, Verkehr, die gesehenen Geräte mit Modell und Software.",
+        "es": "ebusd y el bus: señal, tráfico, los dispositivos vistos con su modelo y software."
+      }
+    }
+  ],
+  "scene_triggers": [
+    {
+      "key": "error_reported",
+      "label": {
+        "en": "An eBUS device reports an error",
+        "fr": "Un appareil eBUS signale une erreur",
+        "de": "Ein eBUS-Gerät meldet einen Fehler",
+        "es": "Un dispositivo eBUS indica un error"
+      },
+      "description": {
+        "en": "The boiler, the heat pump or the controller reports an error code it did not report before (F.28, F.75…).",
+        "fr": "La chaudière, la pompe à chaleur ou le régulateur signale un code d’erreur qu’il ne signalait pas avant (F.28, F.75…).",
+        "de": "Heizkessel, Wärmepumpe oder Regler melden einen Fehlercode, den sie vorher nicht meldeten (F.28, F.75…).",
+        "es": "La caldera, la bomba de calor o el regulador indica un código de error que antes no indicaba (F.28, F.75…)."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "eBUS device (any if empty)",
+            "fr": "Appareil eBUS (tous si vide)",
+            "de": "eBUS-Gerät (alle, wenn leer)",
+            "es": "Dispositivo eBUS (cualquiera si vacío)"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "Device name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del dispositivo"
+          }
+        },
+        {
+          "key": "circuit",
+          "type": "string",
+          "label": {
+            "en": "ebusd circuit",
+            "fr": "Circuit ebusd",
+            "de": "ebusd-Kreis",
+            "es": "Circuito ebusd"
+          }
+        },
+        {
+          "key": "message",
+          "type": "string",
+          "label": {
+            "en": "ebusd message",
+            "fr": "Message ebusd",
+            "de": "ebusd-Nachricht",
+            "es": "Mensaje ebusd"
+          }
+        },
+        {
+          "key": "error_code",
+          "type": "string",
+          "label": {
+            "en": "Error code",
+            "fr": "Code d’erreur",
+            "de": "Fehlercode",
+            "es": "Código de error"
+          }
+        }
+      ]
+    },
+    {
+      "key": "error_cleared",
+      "label": {
+        "en": "An eBUS error is cleared",
+        "fr": "Une erreur eBUS disparaît",
+        "de": "Ein eBUS-Fehler ist behoben",
+        "es": "Un error eBUS desaparece"
+      },
+      "description": {
+        "en": "The device no longer reports the error code it reported.",
+        "fr": "L’appareil ne signale plus le code d’erreur qu’il signalait.",
+        "de": "Das Gerät meldet den bisherigen Fehlercode nicht mehr.",
+        "es": "El dispositivo ya no indica el código de error que indicaba."
+      },
+      "fields": [
+        {
+          "key": "device",
+          "type": "select",
+          "source": "devices",
+          "required": false,
+          "label": {
+            "en": "eBUS device (any if empty)",
+            "fr": "Appareil eBUS (tous si vide)",
+            "de": "eBUS-Gerät (alle, wenn leer)",
+            "es": "Dispositivo eBUS (cualquiera si vacío)"
+          }
+        }
+      ],
+      "variables": [
+        {
+          "key": "device_name",
+          "type": "string",
+          "label": {
+            "en": "Device name",
+            "fr": "Nom de l’appareil",
+            "de": "Gerätename",
+            "es": "Nombre del dispositivo"
+          }
+        },
+        {
+          "key": "circuit",
+          "type": "string",
+          "label": {
+            "en": "ebusd circuit",
+            "fr": "Circuit ebusd",
+            "de": "ebusd-Kreis",
+            "es": "Circuito ebusd"
+          }
+        },
+        {
+          "key": "message",
+          "type": "string",
+          "label": {
+            "en": "ebusd message",
+            "fr": "Message ebusd",
+            "de": "ebusd-Nachricht",
+            "es": "Mensaje ebusd"
+          }
+        },
+        {
+          "key": "error_code",
+          "type": "string",
+          "label": {
+            "en": "Error code",
+            "fr": "Code d’erreur",
+            "de": "Fehlercode",
+            "es": "Código de error"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ebusd_offline",
+      "label": {
+        "en": "ebusd stops answering",
+        "fr": "ebusd ne répond plus",
+        "de": "ebusd antwortet nicht mehr",
+        "es": "ebusd deja de responder"
+      },
+      "description": {
+        "en": "No answer from ebusd for 3 minutes (machine off, network, ebusd stopped).",
+        "fr": "Aucune réponse d’ebusd pendant 3 minutes (machine éteinte, réseau, ebusd arrêté).",
+        "de": "3 Minuten lang keine Antwort von ebusd (Rechner aus, Netzwerk, ebusd gestoppt).",
+        "es": "Ninguna respuesta de ebusd durante 3 minutos (equipo apagado, red, ebusd detenido)."
+      },
+      "variables": [
+        {
+          "key": "address",
+          "type": "string",
+          "label": {
+            "en": "ebusd address",
+            "fr": "Adresse d’ebusd",
+            "de": "ebusd-Adresse",
+            "es": "Dirección de ebusd"
+          }
+        }
+      ]
+    },
+    {
+      "key": "ebusd_online",
+      "label": {
+        "en": "ebusd answers again",
+        "fr": "ebusd répond de nouveau",
+        "de": "ebusd antwortet wieder",
+        "es": "ebusd vuelve a responder"
+      },
+      "description": {
+        "en": "ebusd answers again after it stopped answering.",
+        "fr": "ebusd répond de nouveau après une coupure.",
+        "de": "ebusd antwortet nach einem Ausfall wieder.",
+        "es": "ebusd vuelve a responder tras un corte."
+      },
+      "variables": [
+        {
+          "key": "address",
+          "type": "string",
+          "label": {
+            "en": "ebusd address",
+            "fr": "Adresse d’ebusd",
+            "de": "ebusd-Adresse",
+            "es": "Dirección de ebusd"
+          }
+        }
+      ]
+    }
+  ],
+  "scene_actions": [
+    {
+      "key": "read_value",
+      "timeout_seconds": 30,
+      "label": {
+        "en": "Read an eBUS value",
+        "fr": "Lire une valeur eBUS",
+        "de": "eBUS-Wert lesen",
+        "es": "Leer un valor eBUS"
+      },
+      "description": {
+        "en": "Reads any message of ebusd by its circuit and name, from the bus when the value ebusd holds is too old.",
+        "fr": "Lit n’importe quel message d’ebusd par son circuit et son nom, sur le bus quand la valeur gardée par ebusd est trop ancienne.",
+        "de": "Liest eine beliebige ebusd-Nachricht über Kreis und Namen, vom Bus, wenn der von ebusd gehaltene Wert zu alt ist.",
+        "es": "Lee cualquier mensaje de ebusd por su circuito y su nombre, del bus cuando el valor que guarda ebusd es demasiado antiguo."
+      },
+      "fields": [
+        {
+          "key": "circuit",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Circuit (bai, 700, hmu…)",
+            "fr": "Circuit (bai, 700, hmu…)",
+            "de": "Kreis (bai, 700, hmu…)",
+            "es": "Circuito (bai, 700, hmu…)"
+          },
+          "placeholder": {
+            "en": "bai",
+            "fr": "bai",
+            "de": "bai",
+            "es": "bai"
+          }
+        },
+        {
+          "key": "message",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Message name",
+            "fr": "Nom du message",
+            "de": "Name der Nachricht",
+            "es": "Nombre del mensaje"
+          },
+          "placeholder": {
+            "en": "FlowTemp",
+            "fr": "FlowTemp",
+            "de": "FlowTemp",
+            "es": "FlowTemp"
+          }
+        },
+        {
+          "key": "field",
+          "type": "string",
+          "required": false,
+          "label": {
+            "en": "Field (the first if empty)",
+            "fr": "Champ (le premier si vide)",
+            "de": "Feld (das erste, wenn leer)",
+            "es": "Campo (el primero si vacío)"
+          }
+        },
+        {
+          "key": "max_age",
+          "type": "number",
+          "required": false,
+          "default": 300,
+          "min": 0,
+          "max": 3600,
+          "label": {
+            "en": "Accepted age (seconds)",
+            "fr": "Âge accepté (secondes)",
+            "de": "Akzeptiertes Alter (Sekunden)",
+            "es": "Antigüedad aceptada (segundos)"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "value",
+          "type": "string",
+          "label": {
+            "en": "Value",
+            "fr": "Valeur",
+            "de": "Wert",
+            "es": "Valor"
+          }
+        },
+        {
+          "key": "number",
+          "type": "number",
+          "label": {
+            "en": "Value as a number",
+            "fr": "Valeur numérique",
+            "de": "Wert als Zahl",
+            "es": "Valor numérico"
+          }
+        },
+        {
+          "key": "unit",
+          "type": "string",
+          "label": {
+            "en": "Unit",
+            "fr": "Unité",
+            "de": "Einheit",
+            "es": "Unidad"
+          }
+        },
+        {
+          "key": "fields",
+          "type": "string",
+          "label": {
+            "en": "Every field",
+            "fr": "Tous les champs",
+            "de": "Alle Felder",
+            "es": "Todos los campos"
+          }
+        }
+      ]
+    },
+    {
+      "key": "write_value",
+      "timeout_seconds": 30,
+      "label": {
+        "en": "Write an eBUS value",
+        "fr": "Écrire une valeur eBUS",
+        "de": "eBUS-Wert schreiben",
+        "es": "Escribir un valor eBUS"
+      },
+      "description": {
+        "en": "Writes a message open to everyone (never the installer or service ones), when changes are allowed in the settings.",
+        "fr": "Écrit un message ouvert à tous (jamais ceux de l’installateur ou du SAV), quand les modifications sont autorisées dans les réglages.",
+        "de": "Schreibt eine für alle offene Nachricht (nie die des Installateurs oder Service), wenn Änderungen in den Einstellungen erlaubt sind.",
+        "es": "Escribe un mensaje abierto a todos (nunca los de instalador o servicio técnico), cuando los cambios están permitidos en los ajustes."
+      },
+      "fields": [
+        {
+          "key": "circuit",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Circuit (bai, 700, hmu…)",
+            "fr": "Circuit (bai, 700, hmu…)",
+            "de": "Kreis (bai, 700, hmu…)",
+            "es": "Circuito (bai, 700, hmu…)"
+          },
+          "placeholder": {
+            "en": "bai",
+            "fr": "bai",
+            "de": "bai",
+            "es": "bai"
+          }
+        },
+        {
+          "key": "message",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Message name",
+            "fr": "Nom du message",
+            "de": "Name der Nachricht",
+            "es": "Nombre del mensaje"
+          },
+          "placeholder": {
+            "en": "HwcOpMode",
+            "fr": "HwcOpMode",
+            "de": "HwcOpMode",
+            "es": "HwcOpMode"
+          }
+        },
+        {
+          "key": "value",
+          "type": "string",
+          "required": true,
+          "label": {
+            "en": "Value",
+            "fr": "Valeur",
+            "de": "Wert",
+            "es": "Valor"
+          },
+          "placeholder": {
+            "en": "auto",
+            "fr": "auto",
+            "de": "auto",
+            "es": "auto"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "key": "result",
+          "type": "string",
+          "label": {
+            "en": "Answer of ebusd",
+            "fr": "Réponse d’ebusd",
+            "de": "Antwort von ebusd",
+            "es": "Respuesta de ebusd"
+          }
+        }
+      ]
+    }
+  ]
+}

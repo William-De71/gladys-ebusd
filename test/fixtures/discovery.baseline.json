@@ -1,0 +1,312 @@
+[
+  {
+    "external_id": "ext:test:daemon:ebusd",
+    "features": [
+      {
+        "external_id": "ext:test:daemon:ebusd:signal",
+        "category": "switch",
+        "type": "binary",
+        "unit": null,
+        "min": 0,
+        "max": 1,
+        "step": null,
+        "read_only": true
+      }
+    ]
+  },
+  {
+    "external_id": "ext:test:circuit:700",
+    "features": [
+      {
+        "external_id": "ext:test:circuit:700:displayedoutsidetemp.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:700:hwcopmode.value",
+        "category": "text",
+        "type": "select",
+        "unit": null,
+        "min": 0,
+        "max": 0,
+        "step": null,
+        "read_only": false
+      },
+      {
+        "external_id": "ext:test:circuit:700:hwcstoragetemp.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:700:hwctempdesired.value",
+        "category": "water-heater",
+        "type": "target-temperature",
+        "unit": "celsius",
+        "min": 35,
+        "max": 70,
+        "step": 0.5,
+        "read_only": false
+      },
+      {
+        "external_id": "ext:test:circuit:700:z1daytemp.value",
+        "category": "thermostat",
+        "type": "target-temperature",
+        "unit": "celsius",
+        "min": 5,
+        "max": 30,
+        "step": 0.5,
+        "read_only": false
+      },
+      {
+        "external_id": "ext:test:circuit:700:z1opmode.value",
+        "category": "text",
+        "type": "select",
+        "unit": null,
+        "min": 0,
+        "max": 0,
+        "step": null,
+        "read_only": false
+      },
+      {
+        "external_id": "ext:test:circuit:700:z1roomtemp.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      }
+    ]
+  },
+  {
+    "external_id": "ext:test:circuit:bai",
+    "features": [
+      {
+        "external_id": "ext:test:circuit:bai:currenterror.error",
+        "category": "text",
+        "type": "text",
+        "unit": null,
+        "min": 0,
+        "max": 0,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:flame.value",
+        "category": "switch",
+        "type": "binary",
+        "unit": null,
+        "min": 0,
+        "max": 1,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:flowtemp.temp",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:flowtempdesired.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hchours.value",
+        "category": "duration",
+        "type": "decimal",
+        "unit": "hours",
+        "min": 0,
+        "max": 10000000,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hcstarts.value",
+        "category": "counter-sensor",
+        "type": "integer",
+        "unit": null,
+        "min": 0,
+        "max": 1000000000,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hwchours.value",
+        "category": "duration",
+        "type": "decimal",
+        "unit": "hours",
+        "min": 0,
+        "max": 10000000,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hwcstarts.value",
+        "category": "counter-sensor",
+        "type": "integer",
+        "unit": null,
+        "min": 0,
+        "max": 1000000000,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hwctemp.temp",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:hwctempdesired.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:returntemp.temp",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:returntemp.tempmirror",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.pumpstate",
+        "category": "text",
+        "type": "text",
+        "unit": null,
+        "min": 0,
+        "max": 0,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.temp",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.temp_1",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.temp_2",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.temp_3",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:status01.temp_4",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:storagetemp.temp",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      },
+      {
+        "external_id": "ext:test:circuit:bai:waterpressure.press",
+        "category": "pressure-sensor",
+        "type": "decimal",
+        "unit": "bar",
+        "min": 0,
+        "max": 10,
+        "step": null,
+        "read_only": true
+      }
+    ]
+  },
+  {
+    "external_id": "ext:test:circuit:broadcast",
+    "features": [
+      {
+        "external_id": "ext:test:circuit:broadcast:outsidetemp.value",
+        "category": "temperature-sensor",
+        "type": "decimal",
+        "unit": "celsius",
+        "min": -50,
+        "max": 150,
+        "step": null,
+        "read_only": true
+      }
+    ]
+  }
+]
