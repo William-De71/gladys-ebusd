@@ -108,6 +108,14 @@ export function createApp(
   });
   const guard = createWriteGuard({ storage, now });
 
+  // The detailed log is a setting (users cannot set LOG_LEVEL on a container
+  // the Gladys supervisor creates): written at the info level when it is on.
+  const trace = (line) => {
+    if (config.debugLogs) {
+      logger.info(`ebusd [detail]: ${line}`);
+    }
+  };
+
   const safely = (task, what) =>
     Promise.resolve()
       .then(task)
@@ -220,6 +228,9 @@ export function createApp(
     failingSince = null;
     lastError = null;
     if (reachable !== true) {
+      logger.info(
+        `ebusd: ${reachable === false ? 'answers again' : 'connected'} at ${config.host}:${config.port}`,
+      );
       reachable = true;
       publishTransports();
       refreshWidgets();
@@ -235,6 +246,9 @@ export function createApp(
     lastError = truncate(error?.message ?? String(error), 160);
     failingSince = failingSince ?? now();
     if (reachable !== false) {
+      // Once per loss: the status in Gladys says it too, the log keeps the command.
+      const sent = error instanceof EbusdError && error.command ? ` (${error.command})` : '';
+      logger.warn(`ebusd: no answer at ${config.host}:${config.port}: ${lastError}${sent}`);
       reachable = false;
       publishTransports();
       refreshWidgets();
@@ -376,6 +390,7 @@ export function createApp(
         user: config.user,
         secret: config.secret,
         logger,
+        trace,
         ...(timings.timeoutMs ? { timeoutMs: timings.timeoutMs } : {}),
         ...(timings.listenRetryMs ? { listenRetryMs: timings.listenRetryMs } : {}),
       });
@@ -420,10 +435,11 @@ export function createApp(
       publishStatus();
       return circuits;
     }
+    let withData;
     try {
       await readInfo();
       definitions = parseDefinitions(await client.definitions());
-      const withData = new Set(
+      withData = new Set(
         (await client.withData())
           .split('\n')
           .map((line) => line.trim().toLowerCase().replace(',', '.'))
@@ -453,6 +469,11 @@ export function createApp(
       ]),
     );
     if (force || key !== catalogKey) {
+      logger.info(
+        `ebusd ${info?.version ?? '?'}: signal ${signal ? 'acquired' : 'none'}, ` +
+          `${definitions.length} messages defined, ${withData.size} with data, ` +
+          `${circuits.size} devices${circuits.size > 0 ? ` (${[...circuits.keys()].join(', ')})` : ''}`,
+      );
       catalogKey = key;
       await publishDiscovered();
       refreshWidgets();
@@ -467,7 +488,7 @@ export function createApp(
         }
       }
     } catch (error) {
-      logger.debug?.(`ebusd: cached values not read: ${error.message}`);
+      trace(`cached values not read: ${error.message}`);
     }
     pushAllKnown();
     publishStatus();
@@ -549,6 +570,7 @@ export function createApp(
             setSignal(false);
             break; // nothing can be read on the bus now
           }
+          trace(`${circuit} ${message} not read: ${error.message}`);
           continue; // no data yet for a passive message, a device that does not answer…
         }
         markUnreachable(error);
@@ -725,6 +747,9 @@ export function createApp(
     }
     if (previous.pollSeconds !== config.pollSeconds) {
       schedulePolling();
+    }
+    if (previous.debugLogs !== config.debugLogs) {
+      logger.info(`ebusd: detailed log ${config.debugLogs ? 'on' : 'off'}`);
     }
     if (previous.allowWrites !== config.allowWrites) {
       logger.info(`ebusd: changes ${config.allowWrites ? 'allowed' : 'disabled'}`);

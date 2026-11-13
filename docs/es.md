@@ -25,6 +25,7 @@ Integración no oficial, sin relación con el proyecto ebusd ni con las marcas c
 - **Valores ofrecidos**: los útiles (temperaturas, presión, llama, modulación, potencia, energía, horas, arranques, modos, error), o todos los que ebusd ha visto.
 - **Mensajes adicionales**: mensajes que siempre se ofrecen y se leen, con el nombre que les da ebusd (`ebusctl find`), por ejemplo `bai.PumpPower, 700.Z1NightTemp`.
 - **Idioma de los nombres y textos**: el idioma de los nombres de dispositivos y funciones y de los mensajes de error.
+- **Registro detallado**: escribe también en los logs cada comando enviado a ebusd y su respuesta (nunca el secreto). Actívelo para estudiar un problema y desactívelo después.
 
 Pulse **Probar ebusd y buscar los dispositivos**: la respuesta indica la versión de ebusd, la señal eBUS y los dispositivos encontrados con su número de valores.
 
@@ -75,4 +76,4 @@ Ejemplos:
 - **Sin señal eBUS**: ebusd funciona pero el adaptador no oye nada; compruebe el adaptador, su cableado y `ebusctl state`.
 - **Falta un dispositivo o un valor**: espere a que ebusd cargue la configuración del dispositivo (`ebusctl info`) y vuelva a buscar; elija «Todos los que ebusd ha visto» o indique el mensaje en «Mensajes adicionales».
 - **Se rechaza un cambio**: marque **Permitir cambios**; un mismo mensaje solo puede cambiar una vez por minuto; los ajustes de instalador nunca se escriben.
-- Logs: la pestaña **Logs** de la página de la integración.
+- Logs: la pestaña **Logs** de la página de la integración. Indican siempre cuándo ebusd deja de responder (con el motivo) y lo que encontró cada búsqueda; marque **Registro detallado** para ver también cada comando y su respuesta.

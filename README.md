@@ -148,6 +148,7 @@ Examples:
 | `extra_messages` | string  | empty    | messages always offered and read, `circuit.Message`, with commas (`bai.PumpPower`)          |
 | `allow_writes`   | boolean | `false`  | allow changes (room and hot water targets, on / off, modes), with the guards below          |
 | `language`       | select  | `en`     | language of the device and feature names, of the text states and of the scene errors        |
+| `debug_logs`     | boolean | `false`  | detailed log: every command sent to ebusd and its answer (never the secret)                 |
 
 Guards on changes: a value already set is never written; one message at most once a minute; 100 changes a day (counted in `/data/writes.json`); bounds: room 5–30 °C, hot water 35–70 °C, steps of 0.5 °C; never a message with an access level; the value is read back.
 
@@ -236,7 +237,7 @@ flowchart LR
 - **A value is missing**: choose "every value ebusd has seen", or list the message in "Extra messages".
 - **"Changes are disabled"**: tick **Allow changes**. **"try again in … s"**: the same message was changed less than a minute ago.
 - **"refused the user name or the secret"**: check the access file of ebusd.
-- Logs: the Logs tab of the integration; `DEBUG=gladys-integration-sdk` for the SDK details.
+- Logs: the Logs tab of the integration. They always say when ebusd stops answering (with the reason and the command) and what each search found; tick **Detailed log** to also see every command and its answer. `DEBUG=gladys-integration-sdk` for the SDK details.
 
 ## Contributing
 

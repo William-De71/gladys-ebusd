@@ -25,6 +25,7 @@ Unofficial integration, not affiliated with the ebusd project or the brands abov
 - **Values offered**: the useful ones (temperatures, pressure, flame, modulation, power, energy, hours, starts, modes, error), or every value ebusd has seen.
 - **Extra messages**: messages always offered and read, as ebusd names them (`ebusctl find`), for example `bai.PumpPower, 700.Z1NightTemp`.
 - **Language**: the language of the device and feature names and of the error messages.
+- **Detailed log**: also writes every command sent to ebusd and its answer in the logs (never the secret). Turn it on to look into a problem, then off again.
 
 Press **Test ebusd and search the devices**: the answer gives the ebusd version, the eBUS signal and the devices found with their number of values.
 
@@ -75,4 +76,4 @@ Examples:
 - **No eBUS signal**: ebusd runs but the adapter hears nothing; check the adapter, its wiring and `ebusctl state`.
 - **A device or a value is missing**: wait until ebusd loads the configuration of the device (`ebusctl info`), then search again; choose "every value ebusd has seen" or list the message in "Extra messages".
 - **A change is refused**: tick **Allow changes**; the same message can change once a minute; installer settings are never written.
-- Logs: the **Logs** tab of the integration page.
+- Logs: the **Logs** tab of the integration page. They always say when ebusd stops answering (with the reason) and what each search found; tick **Detailed log** to also see every command and its answer.

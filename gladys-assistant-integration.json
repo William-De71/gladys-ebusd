@@ -348,6 +348,39 @@
           }
         }
       ]
+    },
+    {
+      "key": "troubleshooting",
+      "type": "section",
+      "label": {
+        "en": "Troubleshooting",
+        "fr": "Dépannage",
+        "de": "Fehlerbehebung",
+        "es": "Solución de problemas"
+      },
+      "description": {
+        "en": "The integration writes what it does in the Logs tab of this page: connection to ebusd, lost connection with the reason, devices found.",
+        "fr": "L’intégration écrit ce qu’elle fait dans l’onglet Journaux de cette page : connexion à ebusd, connexion perdue avec la raison, appareils trouvés.",
+        "de": "Die Integration schreibt im Tab Logs dieser Seite, was sie tut: Verbindung zu ebusd, verlorene Verbindung mit Grund, gefundene Geräte.",
+        "es": "La integración escribe lo que hace en la pestaña Logs de esta página: conexión a ebusd, conexión perdida con el motivo, dispositivos encontrados."
+      }
+    },
+    {
+      "key": "debug_logs",
+      "type": "boolean",
+      "default": false,
+      "label": {
+        "en": "Detailed log",
+        "fr": "Journal détaillé",
+        "de": "Ausführliches Log",
+        "es": "Registro detallado"
+      },
+      "description": {
+        "en": "Also writes every command sent to ebusd and its answer (never the secret). Turn it on to look into a problem, then off again: it writes a lot.",
+        "fr": "Écrit aussi chaque commande envoyée à ebusd et sa réponse (jamais le secret). À activer pour étudier un problème, puis à désactiver : il écrit beaucoup.",
+        "de": "Schreibt zusätzlich jeden an ebusd gesendeten Befehl und seine Antwort (nie das Geheimnis). Zur Untersuchung eines Problems einschalten, danach wieder aus: es schreibt viel.",
+        "es": "Escribe también cada comando enviado a ebusd y su respuesta (nunca el secreto). Actívelo para estudiar un problema y desactívelo después: escribe mucho."
+      }
     }
   ],
   "actions": [

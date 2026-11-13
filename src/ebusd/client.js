@@ -21,6 +21,24 @@ const DEFAULT_TIMEOUT_MS = 15 * 1000;
 const CONNECT_TIMEOUT_MS = 8 * 1000;
 const MAX_ANSWER = 4 * 1024 * 1024;
 const LISTEN_RETRY_MS = [5000, 15000, 30000, 60000];
+const TRACE_LENGTH = 200;
+
+/**
+ * @description One line for the detailed log: the first line of an answer
+ * and how many there are.
+ * @param {string} answer - The answer.
+ * @returns {string} The summary.
+ */
+function summarize(answer) {
+  const lines = String(answer)
+    .split('\n')
+    .filter((line) => line.trim() !== '');
+  if (lines.length === 0) {
+    return '(empty)';
+  }
+  const first = lines[0].length > TRACE_LENGTH ? `${lines[0].slice(0, TRACE_LENGTH)}…` : lines[0];
+  return lines.length > 1 ? `${first} (+${lines.length - 1} lines)` : first;
+}
 
 /**
  * @description ebusd answers `find -d` with "ERR: element not found" when no
@@ -78,6 +96,8 @@ function openSocket(host, port, timeoutMs) {
  * @param {number} [options.timeoutMs] - Per command timeout.
  * @param {number[]} [options.listenRetryMs] - Pauses before reopening the listener.
  * @param {object} [options.logger] - Logger.
+ * @param {Function} [options.trace] - `(text) => void`: every command and a
+ * summary of its answer, every live line (the secret is never passed).
  * @returns {object} The client.
  */
 export function createClient({
@@ -88,6 +108,7 @@ export function createClient({
   timeoutMs = DEFAULT_TIMEOUT_MS,
   listenRetryMs = LISTEN_RETRY_MS,
   logger,
+  trace = () => {},
 }) {
   let socket = null;
   let opening = null;
@@ -162,6 +183,7 @@ export function createClient({
     if (!opening) {
       opening = (async () => {
         const fresh = await openSocket(host, port, CONNECT_TIMEOUT_MS);
+        trace(`connected to ${host}:${port}`);
         fresh.on('data', onData);
         fresh.on('error', (error) => drop(error));
         fresh.on('close', () => {
@@ -198,8 +220,10 @@ export function createClient({
     try {
       await open();
       const answer = await send(job.command);
+      trace(`${job.command} -> ${summarize(answer)}`);
       job.resolve(answer);
     } catch (error) {
+      trace(`${job.command} -> failed: ${error?.message ?? error}`);
       if (!(error instanceof EbusdError)) {
         drop(error);
       }
@@ -222,7 +246,7 @@ export function createClient({
     return new Promise((resolve, reject) => {
       queue.push({ command: line, resolve, reject });
       next();
-    }).then((answer) => checkAnswer(answer, line.split(' ')[0]));
+    }).then((answer) => checkAnswer(answer, line));
   };
 
   // --- Listener ------------------------------------------------------------------------------------
@@ -298,6 +322,7 @@ export function createClient({
         if (/^ERR:/.test(line) || /^done$/i.test(line)) {
           continue;
         }
+        trace(`listen: ${line}`);
         try {
           onLine(line);
         } catch (error) {

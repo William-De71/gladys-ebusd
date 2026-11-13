@@ -23,10 +23,16 @@ const DAEMON = id('daemon', 'ebusd');
 
 /**
  * @description An integration wired to the fake Gladys and a fake ebusd.
- * @param {object} [options] - `{ config, create, fake, storage }`.
+ * @param {object} [options] - `{ config, create, fake, storage, logger }`.
  * @returns {Promise<object>} `{ gladys, fake, app, clock, devices, create, stop }`.
  */
-async function setup({ config = {}, create = true, fake, storage = memoryStorage() } = {}) {
+async function setup({
+  config = {},
+  create = true,
+  fake,
+  storage = memoryStorage(),
+  logger = silentLogger,
+} = {}) {
   const ebusd = fake ?? (await startFake());
   const gladys = createFakeGladys({
     config: { host: ebusd.host, port: ebusd.port, language: 'fr', ...config },
@@ -35,7 +41,7 @@ async function setup({ config = {}, create = true, fake, storage = memoryStorage
   const app = createApp(gladys, {
     storage,
     now: clock.now,
-    logger: silentLogger,
+    logger,
     timings: { timeoutMs: 500, listenRetryMs: [20] },
   });
   await gladys.connect();
@@ -183,6 +189,68 @@ test('empty bus: ebusd answers "element not found" to find -d, the status says n
   assert.match(env.gladys.fake.connectionStatus.message.fr, /n’entend rien sur l’eBUS/);
   assert.ok(env.devices().some((device) => device.external_id === DAEMON));
   assert.equal(stateOf(env.gladys, `${DAEMON}:signal`), 0);
+});
+
+/** A logger that keeps `level message` lines. */
+const recordingLogger = () => {
+  const lines = [];
+  const keep = (level) => (message) => lines.push(`${level} ${message}`);
+  return {
+    lines,
+    debug: keep('debug'),
+    info: keep('info'),
+    warn: keep('warn'),
+    error: keep('error'),
+  };
+};
+
+test('logs: connection, what a search found, ebusd lost once and back', async (t) => {
+  const logger = recordingLogger();
+  const env = await setup({ logger });
+  t.after(() => env.stop());
+  const address = `127.0.0.1:${env.fake.port}`;
+  assert.ok(logger.lines.includes(`info ebusd: connected at ${address}`), logger.lines.join('\n'));
+  assert.ok(
+    logger.lines.some((line) =>
+      /^info ebusd .*: signal acquired, \d+ messages defined, \d+ with data, \d+ devices \(.*bai/.test(
+        line,
+      ),
+    ),
+  );
+  assert.ok(!logger.lines.some((line) => line.includes('[detail]')), 'no detail unless asked');
+  await env.fake.close();
+  await env.app.poll();
+  await env.app.poll();
+  const lost = logger.lines.filter((line) =>
+    line.startsWith(`warn ebusd: no answer at ${address}`),
+  );
+  assert.equal(lost.length, 1, 'once per loss');
+  await env.fake.listen(env.fake.port, '127.0.0.1');
+  await env.app.poll();
+  assert.ok(logger.lines.includes(`info ebusd: answers again at ${address}`));
+});
+
+test('logs: the detailed log has every command and its answer, never the secret', async (t) => {
+  const logger = recordingLogger();
+  const fake = await startFake({ users: { gladys: 's3cret-value' } });
+  const env = await setup({
+    fake,
+    logger,
+    config: { user: 'gladys', secret: 's3cret-value', debug_logs: true },
+  });
+  t.after(() => env.stop());
+  const detail = () => logger.lines.filter((line) => line.startsWith('info ebusd [detail]: '));
+  assert.ok(detail().some((line) => line.includes(': info -> version: ebusd')));
+  assert.ok(detail().some((line) => /: find -a -F .* -> .*\(\+\d+ lines\)$/.test(line)));
+  assert.ok(
+    !logger.lines.some((line) => line.includes('s3cret-value')),
+    'the secret is never logged',
+  );
+  await env.gladys.fake.configUpdated({ ...env.gladys.config, debug_logs: false });
+  assert.ok(logger.lines.includes('info ebusd: detailed log off'));
+  const count = detail().length;
+  await env.app.poll();
+  assert.equal(detail().length, count, 'nothing more once off');
 });
 
 test('writes: off by default; the value Gladys showed is put back', async (t) => {

@@ -148,6 +148,7 @@ Beispiele:
 | `extra_messages` | string  | leer     | Nachrichten, die immer angeboten und gelesen werden, `circuit.Message`, durch Kommas getrennt (`bai.PumpPower`) |
 | `allow_writes`   | boolean | `false`  | Änderungen erlauben (Raum- und Warmwasser-Soll, Ein/Aus, Betriebsarten), mit dem Schutz unten                   |
 | `language`       | select  | `en`     | Sprache der Geräte- und Funktionsnamen, der Textzustände und der Szenenfehler                                   |
+| `debug_logs`     | boolean | `false`  | ausführliches Log: jeder an ebusd gesendete Befehl und seine Antwort (nie das Geheimnis)                        |
 
 Schutz bei Änderungen: Ein bereits gesetzter Wert wird nie geschrieben; dieselbe Nachricht höchstens einmal pro Minute; 100 Änderungen pro Tag (gezählt in `/data/writes.json`); Grenzen: Raum 5–30 °C, Warmwasser 35–70 °C, Schritte von 0,5 °C; nie eine Nachricht mit Zugriffsebene; der Wert wird zurückgelesen.
 
@@ -236,7 +237,7 @@ flowchart LR
 - **Ein Wert fehlt**: Wählen Sie „Alle, die ebusd gesehen hat“ oder tragen Sie die Nachricht unter „Zusätzliche Nachrichten“ ein.
 - **„Änderungen sind deaktiviert“**: Aktivieren Sie **Änderungen erlauben**. **„in … s erneut versuchen“**: Dieselbe Nachricht wurde vor weniger als einer Minute geändert.
 - **„hat den Benutzernamen oder das Geheimnis abgelehnt“**: Prüfen Sie die Zugriffsdatei von ebusd.
-- Logs: der Tab Logs der Integration; `DEBUG=gladys-integration-sdk` für die SDK-Details.
+- Logs: der Tab Logs der Integration. Sie melden immer, wenn ebusd nicht mehr antwortet (mit Grund und Befehl), und was jede Suche gefunden hat; **Ausführliches Log** aktivieren, um zusätzlich jeden Befehl und seine Antwort zu sehen. `DEBUG=gladys-integration-sdk` für die SDK-Details.
 
 ## Mitwirken
 

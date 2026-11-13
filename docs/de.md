@@ -25,6 +25,7 @@ Inoffizielle Integration, weder mit dem ebusd-Projekt noch mit den genannten Mar
 - **Angebotene Werte**: die nützlichen (Temperaturen, Druck, Flamme, Modulation, Leistung, Energie, Stunden, Starts, Betriebsarten, Fehler) oder alle, die ebusd gesehen hat.
 - **Zusätzliche Nachrichten**: Nachrichten, die immer angeboten und gelesen werden, so benannt wie bei ebusd (`ebusctl find`), zum Beispiel `bai.PumpPower, 700.Z1NightTemp`.
 - **Sprache der Namen und Texte**: die Sprache der Geräte- und Funktionsnamen und der Fehlermeldungen.
+- **Ausführliches Log**: schreibt zusätzlich jeden an ebusd gesendeten Befehl und seine Antwort in die Logs (nie das Geheimnis). Zur Untersuchung eines Problems einschalten, danach wieder aus.
 
 Drücken Sie **ebusd testen und Geräte suchen**: Die Antwort nennt die ebusd-Version, das eBUS-Signal und die gefundenen Geräte mit ihrer Anzahl an Werten.
 
@@ -75,4 +76,4 @@ Beispiele:
 - **Kein eBUS-Signal**: ebusd läuft, aber der Adapter hört nichts; prüfen Sie den Adapter, seine Verkabelung und `ebusctl state`.
 - **Ein Gerät oder ein Wert fehlt**: Warten Sie, bis ebusd die Konfiguration des Geräts geladen hat (`ebusctl info`), und suchen Sie dann erneut; wählen Sie „Alle, die ebusd gesehen hat“ oder tragen Sie die Nachricht unter „Zusätzliche Nachrichten“ ein.
 - **Eine Änderung wird abgelehnt**: Aktivieren Sie **Änderungen erlauben**; dieselbe Nachricht lässt sich einmal pro Minute ändern; Installateur-Einstellungen werden nie geschrieben.
-- Logs: der Tab **Logs** der Integrationsseite.
+- Logs: der Tab **Logs** der Integrationsseite. Sie melden immer, wenn ebusd nicht mehr antwortet (mit Grund), und was jede Suche gefunden hat; **Ausführliches Log** aktivieren, um zusätzlich jeden Befehl und seine Antwort zu sehen.

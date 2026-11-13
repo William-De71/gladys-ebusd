@@ -24,6 +24,7 @@ export const DEFAULTS = {
   extra_messages: '',
   allow_writes: false,
   language: 'en',
+  debug_logs: false,
 };
 
 const bool = (value, fallback) => {
@@ -86,7 +87,7 @@ export function parseExtraMessages(raw) {
 /**
  * @description Normalize the raw configuration.
  * @param {object} raw - `gladys.config` or the `onConfigUpdated` payload.
- * @returns {object} `{ host, port, user, secret, pollSeconds, allSeen, extra, allowWrites, language }`.
+ * @returns {object} `{ host, port, user, secret, pollSeconds, allSeen, extra, allowWrites, language, debugLogs }`.
  */
 export function normalizeConfig(raw = {}) {
   const interval = Number(raw.poll_interval ?? DEFAULTS.poll_interval);
@@ -101,5 +102,6 @@ export function normalizeConfig(raw = {}) {
     extra: parseExtraMessages(raw.extra_messages ?? DEFAULTS.extra_messages),
     allowWrites: bool(raw.allow_writes, DEFAULTS.allow_writes),
     language: LANGUAGES.includes(raw.language) ? raw.language : DEFAULTS.language,
+    debugLogs: bool(raw.debug_logs, DEFAULTS.debug_logs),
   };
 }

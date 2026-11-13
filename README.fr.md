@@ -148,6 +148,7 @@ Exemples :
 | `extra_messages` | string  | vide     | messages toujours proposés et lus, `circuit.Message`, séparés par des virgules (`bai.PumpPower`)                     |
 | `allow_writes`   | boolean | `false`  | autoriser les modifications (consignes ambiantes et d’eau chaude, marche / arrêt, modes), avec les gardes ci-dessous |
 | `language`       | select  | `en`     | langue des noms d’appareils et de fonctionnalités, des états texte et des erreurs de scène                           |
+| `debug_logs`     | boolean | `false`  | journal détaillé : chaque commande envoyée à ebusd et sa réponse (jamais le secret)                                  |
 
 Gardes sur les modifications : une valeur déjà en place n’est jamais réécrite ; un même message au plus une fois par minute ; 100 modifications par jour (comptées dans `/data/writes.json`) ; bornes : ambiance 5–30 °C, eau chaude 35–70 °C, pas de 0,5 °C ; jamais un message avec un niveau d’accès ; la valeur est relue.
 
@@ -236,7 +237,7 @@ flowchart LR
 - **Une valeur manque** : choisissez « Toutes celles qu’ebusd a vues », ou indiquez le message dans « Messages en plus ».
 - **« Les modifications sont désactivées »** : cochez **Autoriser les modifications**. **« réessayez dans … s »** : le même message a été modifié il y a moins d’une minute.
 - **« a refusé le nom d’utilisateur ou le secret »** : vérifiez le fichier d’accès d’ebusd.
-- Journaux : l’onglet Journaux de l’intégration ; `DEBUG=gladys-integration-sdk` pour le détail du SDK.
+- Journaux : l’onglet Journaux de l’intégration. Ils disent toujours quand ebusd ne répond plus (avec la raison et la commande) et ce que chaque recherche a trouvé ; cochez **Journal détaillé** pour voir aussi chaque commande et sa réponse. `DEBUG=gladys-integration-sdk` pour le détail du SDK.
 
 ## Contribuer
 

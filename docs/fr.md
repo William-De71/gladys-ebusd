@@ -25,6 +25,7 @@ Intégration non officielle, sans lien avec le projet ebusd ni les marques cité
 - **Valeurs proposées** : les valeurs utiles (températures, pression, flamme, modulation, puissance, énergie, heures, démarrages, modes, erreur), ou toutes celles qu’ebusd a vues.
 - **Messages en plus** : des messages toujours proposés et lus, nommés comme dans ebusd (`ebusctl find`), par exemple `bai.PumpPower, 700.Z1NightTemp`.
 - **Langue** : la langue des noms d’appareils et de fonctionnalités et des messages d’erreur.
+- **Journal détaillé** : écrit aussi dans les journaux chaque commande envoyée à ebusd et sa réponse (jamais le secret). À activer pour étudier un problème, puis à désactiver.
 
 Appuyez sur **Tester ebusd et chercher les appareils** : la réponse donne la version d’ebusd, le signal eBUS et les appareils trouvés avec leur nombre de valeurs.
 
@@ -75,4 +76,4 @@ Exemples :
 - **Pas de signal eBUS** : ebusd tourne mais l’adaptateur n’entend rien ; vérifiez l’adaptateur, son câblage et `ebusctl state`.
 - **Un appareil ou une valeur manque** : attendez qu’ebusd charge la configuration de l’appareil (`ebusctl info`), puis relancez la recherche ; choisissez « Toutes celles qu’ebusd a vues » ou indiquez le message dans « Messages en plus ».
 - **Une modification est refusée** : cochez **Autoriser les modifications** ; un même message peut changer une fois par minute ; les réglages installateur ne sont jamais écrits.
-- Journaux : l’onglet **Journaux** de la page de l’intégration.
+- Journaux : l’onglet **Journaux** de la page de l’intégration. Ils disent toujours quand ebusd ne répond plus (avec la raison) et ce que chaque recherche a trouvé ; cochez **Journal détaillé** pour voir aussi chaque commande et sa réponse.
