@@ -229,6 +229,10 @@ export class FakeEbusd {
   }
 
   find(args) {
+    // ebusd 26.1 answers a `find -d` that matches nothing with an error.
+    if (args.includes('-d') && this.values.size === 0) {
+      return 'ERR: element not found';
+    }
     if (args.includes('-a') && args.includes('-F')) {
       return this.definitions.trimEnd();
     }

@@ -172,6 +172,19 @@ test('no signal: status, signal feature, nothing read on the bus, writes refused
   assert.equal(fake.writes.length, 0);
 });
 
+test('empty bus: ebusd answers "element not found" to find -d, the status says no signal', async (t) => {
+  // The answers of ebusd 26.1 with an adapter and no device on the bus yet
+  // (community report: Vaillant boiler not connected).
+  const fake = await startFake({ signal: false, values: {} });
+  const env = await setup({ fake });
+  t.after(() => env.stop());
+  await env.flush();
+  assert.equal(env.gladys.fake.connectionStatus.connected, false);
+  assert.match(env.gladys.fake.connectionStatus.message.fr, /n’entend rien sur l’eBUS/);
+  assert.ok(env.devices().some((device) => device.external_id === DAEMON));
+  assert.equal(stateOf(env.gladys, `${DAEMON}:signal`), 0);
+});
+
 test('writes: off by default; the value Gladys showed is put back', async (t) => {
   const env = await setup();
   t.after(() => env.stop());

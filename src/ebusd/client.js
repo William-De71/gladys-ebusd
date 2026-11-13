@@ -23,6 +23,24 @@ const MAX_ANSWER = 4 * 1024 * 1024;
 const LISTEN_RETRY_MS = [5000, 15000, 30000, 60000];
 
 /**
+ * @description ebusd answers `find -d` with "ERR: element not found" when no
+ * message has data yet (a bus without devices, or just started): that is an
+ * empty list, not a failure.
+ * @param {Promise<string>} answer - The answer of a `find -d` command.
+ * @returns {Promise<string>} The answer, empty when nothing has data.
+ */
+async function emptyWhenNothing(answer) {
+  try {
+    return await answer;
+  } catch (error) {
+    if (error instanceof EbusdError && /element not found/i.test(error.message)) {
+      return '';
+    }
+    throw error;
+  }
+}
+
+/**
  * @description Open a socket, or fail within the connect timeout.
  * @param {string} host - Host.
  * @param {number} port - Port.
@@ -306,10 +324,10 @@ export function createClient({
     definitions: () => command('find -a -F type,circuit,level,name,comment,zz,fields'),
 
     /** @returns {Promise<string>} The messages that have data. */
-    withData: () => command('find -d -F circuit,name'),
+    withData: () => emptyWhenNothing(command('find -d -F circuit,name')),
 
     /** @returns {Promise<string>} `C NAME = field=value;…` of every message with data (cache only). */
-    cached: () => command('find -v -d'),
+    cached: () => emptyWhenNothing(command('find -v -d')),
 
     /**
      * @description Read a message (the cache when younger than maxAge).
