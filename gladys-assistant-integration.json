@@ -8,8 +8,8 @@
     "de": "Heizkessel und Wärmepumpen von Vaillant, Saunier Duval, Wolf… am eBUS, über ebusd, lokal.",
     "es": "Calderas y bombas de calor Vaillant, Saunier Duval, Wolf… en el eBUS, con ebusd, en local."
   },
-  "version": "0.1.0",
-  "docker_image": "ghcr.io/william-de71/gladys-ebusd:0.1.0",
+  "version": "0.2.0",
+  "docker_image": "ghcr.io/william-de71/gladys-ebusd:0.2.0",
   "gladys_version": ">=5.3.0",
   "cover_image": "https://raw.githubusercontent.com/William-De71/gladys-ebusd/main/cover.jpg",
   "categories": ["climate", "energy"],
